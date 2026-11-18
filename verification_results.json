@@ -1,0 +1,155 @@
+{
+  "backend_startup": {
+    "status": "PASS",
+    "title": "VOICEGUARD AI \u2014 Cyber Acoustic Defense & Voice Biometrics API",
+    "version": "1.0.0",
+    "total_endpoints": 40
+  },
+  "auth_registration": {
+    "status": "PASS",
+    "user_id": "66f8b345-2fe7-4f02-8322-ad6ae5b12c8b"
+  },
+  "auth_login": {
+    "status": "PASS",
+    "token_type": "bearer"
+  },
+  "auth_jwt_validation": {
+    "status": "FAIL",
+    "error": "'email'"
+  },
+  "auth_refresh": null,
+  "ffmpeg_status": {
+    "status": "PASS",
+    "pyav_version": "19.0.2",
+    "ffmpeg_cli": "C:\\Users\\LC\\Downloads\\ffmpeg-9.0.2-essentials_build\\ffmpeg-9.0.2-essentials_build\\bin\\ffmpeg.exe",
+    "codecs_count": 25
+  },
+  "wav_upload": {
+    "status": "PASS",
+    "analysis_id": "84125019-88fe-417c-b230-cae08817bba9"
+  },
+  "mp3_upload": {
+    "status": "PASS",
+    "analysis_id": "3a5b8236-3b21-47c8-bad3-7139077ea7bf"
+  },
+  "mpeg_upload": {
+    "status": "PASS",
+    "analysis_id": "322497b8-59b1-44c9-9df0-898f8dd8a105"
+  },
+  "audio_preprocessing": {
+    "status": "PASS",
+    "samples": 32000,
+    "rms": 0.35352763533592224
+  },
+  "feature_extraction": {
+    "status": "PASS",
+    "num_frames": 124
+  },
+  "model_availability": {
+    "aasist_onnx_exists": false,
+    "rawnet2_onnx_exists": false,
+    "models_directory": "C:\\Users\\LC\\OneDrive\\Desktop\\VoiceGard_AI\\backend\\models_weights",
+    "device_provider": "CPUExecutionProvider"
+  },
+  "real_onnx_inference": null,
+  "endpoints_tested": {
+    "GET /api/health": {
+      "status": "PASS",
+      "code": 200,
+      "expected": 200
+    },
+    "GET /api/v1/audio/health": {
+      "status": "PASS",
+      "code": 200,
+      "expected": 200
+    },
+    "GET /api/auth/status": {
+      "status": "PASS",
+      "code": 200,
+      "expected": 200
+    },
+    "GET /api/audio/history": {
+      "status": "PASS",
+      "code": 200,
+      "expected": 200
+    },
+    "GET /api/audio/84125019-88fe-417c-b230-cae08817bba9": {
+      "status": "PASS",
+      "code": 200,
+      "expected": 200
+    },
+    "GET /api/audio/84125019-88fe-417c-b230-cae08817bba9/stream": {
+      "status": "PASS",
+      "code": 200,
+      "expected": 200
+    },
+    "GET /api/fraud/assess/84125019-88fe-417c-b230-cae08817bba9": {
+      "status": "PASS",
+      "code": 200,
+      "expected": 200
+    },
+    "GET /api/v1/audio/analysis/84125019-88fe-417c-b230-cae08817bba9": {
+      "status": "PASS",
+      "code": 200,
+      "expected": 200
+    },
+    "GET /api/dashboard/overview": {
+      "status": "PASS",
+      "code": 200,
+      "expected": 200
+    },
+    "GET /api/dashboard/analytics": {
+      "status": "PASS",
+      "code": 200,
+      "expected": 200
+    },
+    "GET /api/speakers": {
+      "status": "PASS",
+      "code": 200,
+      "expected": 200
+    },
+    "POST /api/speaker/register": {
+      "status": "FAIL",
+      "code": 422,
+      "expected": 201
+    },
+    "POST /api/speaker/verify": {
+      "status": "FAIL",
+      "code": 422,
+      "expected": 200
+    },
+    "GET /api/threats": {
+      "status": "PASS",
+      "code": 200,
+      "expected": 200
+    },
+    "GET /api/reports": {
+      "status": "PASS",
+      "code": 200,
+      "expected": 200
+    },
+    "GET /api/reports/export": {
+      "status": "PASS",
+      "code": 200,
+      "expected": 200
+    },
+    "GET /api/security-events": {
+      "status": "PASS",
+      "code": 200,
+      "expected": 200
+    },
+    "POST /api/auth/logout": {
+      "status": "PASS",
+      "code": 200,
+      "expected": 200
+    }
+  },
+  "db_persistence": {
+    "status": "PASS",
+    "users": 57,
+    "audio_analyses": 40,
+    "speakers": 0,
+    "threats": 0,
+    "security_events": 232
+  }
+}

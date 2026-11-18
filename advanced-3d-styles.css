@@ -1,0 +1,339 @@
+/**
+ * ============================================================================
+ * ADVANCED 3D ANIMATION STYLES
+ * Premium styling for 3D containers and animations
+ * These styles ENHANCE the existing website without modifying its design
+ * ============================================================================
+ */
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ========================================================================
+   3D CONTAINER STYLING
+   ======================================================================== */
+
+#advanced-neural-sphere,
+#advanced-audio-viz,
+#advanced-security-shield,
+#advanced-cyber-radar {
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+/* Neural Sphere Container */
+#advanced-neural-sphere {
+    animation: containerFadeIn 0.8s ease-out;
+}
+
+#advanced-neural-sphere canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Audio Visualization Container */
+#advanced-audio-viz {
+    animation: containerFadeIn 0.8s ease-out 0.1s both;
+}
+
+#advanced-audio-viz canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Security Shield Container */
+#advanced-security-shield {
+    animation: containerFadeIn 0.8s ease-out 0.2s both;
+}
+
+#advanced-security-shield canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.3));
+}
+
+/* Cyber Radar Container */
+#advanced-cyber-radar {
+    animation: containerFadeIn 0.8s ease-out 0.3s both;
+}
+
+#advanced-cyber-radar canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 15px rgba(0, 229, 255, 0.2));
+}
+
+/* ========================================================================
+   ANIMATION KEYFRAMES
+   ======================================================================== */
+
+@keyframes containerFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(0, 229, 255, 0.6);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ========================================================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================================================== */
+
+@media (max-width: 1024px) {
+    #advanced-neural-sphere,
+    #advanced-security-shield {
+        height: 250px !important;
+    }
+
+    #advanced-audio-viz,
+    #advanced-cyber-radar {
+        height: 220px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    #advanced-neural-sphere,
+    #advanced-security-shield {
+        height: 200px !important;
+        margin: 1rem 0 !important;
+    }
+
+    #advanced-audio-viz,
+    #advanced-cyber-radar {
+        height: 180px !important;
+        margin: 1rem 0 !important;
+    }
+}
+
+/* ========================================================================
+   ENHANCED ELEMENT ANIMATIONS
+   ======================================================================== */
+
+/* Smooth card entrance animations */
+.card {
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 229, 255, 0.1);
+}
+
+/* Button glow effects */
+button {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+}
+
+.btn-outline:hover {
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+}
+
+/* Section transitions */
+.view-section {
+    animation: sectionFadeIn 0.5s ease-out;
+}
+
+@keyframes sectionFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================================================
+   PERFORMANCE OPTIMIZATIONS
+   ======================================================================== */
+
+/* Use GPU acceleration */
+#advanced-neural-sphere,
+#advanced-audio-viz,
+#advanced-security-shield,
+#advanced-cyber-radar {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+canvas {
+    image-rendering: auto;
+    image-rendering: crisp-edges;
+}
+
+/* ========================================================================
+   ACCESSIBILITY ENHANCEMENTS
+   ======================================================================== */
+
+/* High contrast mode support */
+@media (prefers-contrast: more) {
+    #advanced-neural-sphere,
+    #advanced-audio-viz,
+    #advanced-security-shield,
+    #advanced-cyber-radar {
+        border-width: 2px;
+        border-color: rgba(0, 229, 255, 0.5);
+    }
+}
+
+/* Dark mode optimization */
+@media (prefers-color-scheme: dark) {
+    #advanced-neural-sphere,
+    #advanced-security-shield {
+        background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(0, 229, 255, 0.08) 100%) !important;
+    }
+
+    #advanced-audio-viz,
+    #advanced-cyber-radar {
+        background: #020305 !important;
+    }
+}
+
+/* ========================================================================
+   3D EFFECT ENHANCEMENTS
+   ======================================================================== */
+
+/* Add subtle parallax effect */
+.content-body {
+    perspective: 1200px;
+}
+
+#advanced-neural-sphere,
+#advanced-audio-viz,
+#advanced-security-shield,
+#advanced-cyber-radar {
+    transform-style: preserve-3d;
+}
+
+/* Loading state */
+.advanced-3d-loading {
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+/* ========================================================================
+   VISUAL ENHANCEMENTS FOR 3D ELEMENTS
+   ======================================================================== */
+
+/* Add subtle border glow */
+#advanced-neural-sphere,
+#advanced-security-shield {
+    box-shadow: inset 0 0 20px rgba(139, 92, 246, 0.1),
+                0 0 30px rgba(139, 92, 246, 0.05);
+}
+
+#advanced-audio-viz,
+#advanced-cyber-radar {
+    box-shadow: inset 0 0 15px rgba(0, 229, 255, 0.05),
+                0 0 20px rgba(0, 229, 255, 0.03);
+}
+
+/* Hover enhancements */
+#advanced-neural-sphere:hover,
+#advanced-security-shield:hover {
+    box-shadow: inset 0 0 25px rgba(139, 92, 246, 0.15),
+                0 0 40px rgba(139, 92, 246, 0.08);
+}
+
+#advanced-audio-viz:hover,
+#advanced-cyber-radar:hover {
+    box-shadow: inset 0 0 20px rgba(0, 229, 255, 0.1),
+                0 0 30px rgba(0, 229, 255, 0.06);
+}
+
+/* ========================================================================
+   TEXT AND LABEL ANIMATIONS
+   ======================================================================== */
+
+/* Floating animation for labels */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.advanced-label {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* ========================================================================
+   MOBILE SPECIFIC OPTIMIZATIONS
+   ======================================================================== */
+
+@media (max-width: 480px) {
+    #advanced-neural-sphere,
+    #advanced-security-shield {
+        height: 180px !important;
+    }
+
+    #advanced-audio-viz,
+    #advanced-cyber-radar {
+        height: 160px !important;
+    }
+
+    canvas {
+        image-rendering: pixelated;
+    }
+}
+
+/* ========================================================================
+   PRINT STYLES
+   ======================================================================== */
+
+@media print {
+    #advanced-neural-sphere,
+    #advanced-audio-viz,
+    #advanced-security-shield,
+    #advanced-cyber-radar {
+        display: none !important;
+    }
+}

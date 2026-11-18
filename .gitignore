@@ -1,0 +1,43 @@
+# Virtual environments
+.venv/
+backend/.venv/
+conversion_env/
+env/
+venv/
+ENV/
+
+# Python caches & build
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.dist/
+.kiro/
+
+# Node & Data
+node_modules/
+.data/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.db
+*.db-shm
+*.db-wal
+cookies.txt
+uploads/
+backend/uploads/
+*.log
+
+# Backups & local files
+_backup_voiceguard/
+*.bak
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# IDE
+.vscode/
+.idea/

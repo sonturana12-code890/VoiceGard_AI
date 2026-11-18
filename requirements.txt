@@ -1,0 +1,36 @@
+# VOICEGUARD AI — Production Python Dependencies
+# Python 3.13 Compatible
+# Problem Statement: SIH26104 – AI-Powered Real-Time Detection and Prevention of Voice Cloning Impersonation Attacks
+
+# Core Web Framework & ASGI Server
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+python-multipart>=0.0.9
+python-dotenv>=1.0.0
+
+# Database & Schema Validation
+sqlalchemy>=2.0.0
+pydantic>=2.7.0
+
+# Cryptography, Authentication & Security
+bcrypt>=4.0.0
+PyJWT>=2.8.0
+passlib>=1.7.4
+
+# Audio DSP, Resampling & Mathematical Feature Extraction
+av>=14.0.0
+numpy>=1.26.0,<3.0.0
+
+# Deepfake Neural Inference (AASIST / RawNet2 ONNX Runtime)
+onnxruntime>=1.18.0
+
+# Speaker Verification & Biometric Embeddings (SpeechBrain ECAPA-TDNN)
+speechbrain>=1.0.0
+torch>=2.0.0
+torchaudio>=2.0.0
+soundfile>=0.12.0
+hyperpyyaml>=1.2.0
+
+# HTTP Client & Automated Testing
+httpx>=0.27.0
+pytest>=8.0.0

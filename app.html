@@ -1,0 +1,2378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#050510">
+    <title>VOICEGUARD AI — Cyber Acoustic Defense & Voice Biometrics</title>
+
+    <!-- Google Fonts for clean typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css?v=live-stream-20261113">
+    <link rel="stylesheet" href="landing-and-dashboard.css?v=layout-20261113">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.149.0/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="api-config.js"></script>
+    <script src="api-client.js"></script>
+    <script src="spectrogram-viewer.js"></script>
+    <script src="app-controller.js?v=live-stream-20261113"></script>
+    <script src="animations-3d.js"></script>
+    <script src="animations-integration.js"></script>
+</head>
+
+<body class="theme-navy auth-pending">
+    <!-- Top App Layout -->
+    <div class="app-layout">
+        <button class="sidebar-overlay" id="sidebar-overlay" type="button" aria-label="Close navigation" aria-hidden="true" tabindex="-1"></button>
+
+        <!-- ======================================================== -->
+        <!-- SIDEBAR NAVIGATION                                       -->
+        <!-- ======================================================== -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-logo">
+                    <!-- VoiceGuard Shield & Wave Icon -->
+                    <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 12v-1"/>
+            <path d="M12 15v-7"/>
+            <path d="M15 13v-3"/>
+          </svg>
+                    <div class="brand-text">
+                        <span class="brand-title">VOICEGUARD</span>
+                        <span class="brand-sub">AI CYBERSECURITY</span>
+                    </div>
+                </div>
+                <button class="mobile-close-btn" id="mobile-close-btn" aria-label="Close Navigation">
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="sidebar-nav">
+                <div class="nav-group-label">SECURITY CONSOLE</div>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="#overview" class="nav-link active" data-view="overview">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+              </svg>
+                            <span>Overview</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#analysis" class="nav-link" data-view="analysis">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                <line x1="12" y1="19" x2="12" y2="23"></line>
+                <line x1="8" y1="23" x2="16" y2="23"></line>
+              </svg>
+                            <span>Voice Detection</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#verification" class="nav-link" data-view="verification">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <polyline points="16 11 18 13 22 9"></polyline>
+                            </svg>
+                            <span>Speaker Verification</span>
+                            <span class="nav-pill-live" style="background: rgba(16, 185, 129, 0.2); color: #10b981; font-weight: 700; border: 1px solid rgba(16, 185, 129, 0.3);">ECAPA</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#live-monitoring" class="nav-link" data-view="live-monitoring">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+                            <span>Live Analysis</span>
+                            <span class="nav-pill-live demo-nav-pill">LIVE</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#history" class="nav-link" data-view="history">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+                            <span>Detection History</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#analytics" class="nav-link" data-view="analytics">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+              </svg>
+                            <span>Security Analytics</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#threat-intel" class="nav-link" data-view="threat-intel">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+              </svg>
+                            <span>Reports</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#settings" class="nav-link" data-view="settings">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="3" r="1"></circle>
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#profile" class="nav-link" data-view="profile">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+                            <span>User Profile</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Sidebar Status Card -->
+            <div class="sidebar-status-card">
+                <div class="status-indicator-row">
+                    <span class="pulse-dot" id="system-status-indicator"></span>
+                    <span class="status-title">VOICEGUARD SANDBOX</span>
+                </div>
+                <p class="status-meta" id="system-status-text">No inference backend connected</p>
+                <div class="status-metrics">
+                    <div class="status-metric-item">
+                        <span class="metric-label">Inference</span>
+                        <span class="metric-val" id="model-status-badge">Phase 1 Ready</span>
+                    </div>
+                    <div class="status-metric-item">
+                        <span class="metric-label">Channels</span>
+                        <span class="metric-val">Sample</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Profile in Sidebar Footer -->
+            <div class="sidebar-footer">
+                <div class="operator-avatar">
+                    <span id="sidebar-user-avatar">VG</span>
+                </div>
+                <div class="operator-info">
+                    <div class="operator-name" id="sidebar-user-name">Loading profile…</div>
+                    <div class="operator-role" id="sidebar-user-role">VoiceGuard account</div>
+                </div>
+                <button class="sidebar-logout" id="sidebar-logout-btn" type="button" aria-label="Sign out">↗</button>
+            </div>
+        </aside>
+
+        <!-- ======================================================== -->
+        <!-- MAIN CONTENT AREA                                        -->
+        <!-- ======================================================== -->
+        <div class="main-wrapper">
+
+            <!-- Top Application Header -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="menu-toggle-btn" id="mobile-toggle-btn" type="button" aria-label="Toggle Navigation" aria-controls="sidebar" aria-expanded="true">
+            <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+                    <div class="breadcrumbs">
+                        <span class="breadcrumb-root">VoiceGuard</span>
+                        <span class="breadcrumb-separator">/</span>
+                        <span class="breadcrumb-current" id="current-view-title">Dashboard Overview</span>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <!-- Threat Level Indicator Banner -->
+                    <div class="topbar-threat-badge">
+                        <span class="threat-label">SYSTEM RISK ENGINE:</span>
+                        <span class="threat-value" id="global-threat-level">UNAVAILABLE</span>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <button class="btn btn-sm btn-outline" id="btn-export-quick" title="Export Account Forensic Report">
+            <svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" stroke-width="2" fill="none">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Export Report</span>
+          </button>
+
+                    <!-- Current UTC System Clock -->
+                    <div class="topbar-clock" id="system-clock">00:00:00 UTC</div>
+                </div>
+            </header>
+
+            <!-- View Containers -->
+            <main class="content-body">
+
+                <!-- ==================================================== -->
+                <!-- 1. DASHBOARD OVERVIEW                                -->
+                <!-- ==================================================== -->
+                <section id="view-overview" class="view-section active">
+                    <!-- Section Header -->
+                    <div class="section-header">
+                        <div>
+                            <h1 class="section-title">Security Operations Overview</h1>
+                            <p class="section-desc">A voice security command center. Live inference is unavailable until an AI backend is connected.</p>
+                        </div>
+                        <div class="header-actions">
+                            <span class="badge badge-info demo-badge">DEMO VISUALS · ACCOUNT DATA CONNECTED</span>
+                        </div>
+                    </div>
+
+                    <section class="hero-panel" aria-labelledby="hero-title">
+                        <div class="hero-copy">
+                            <span class="hero-eyebrow"><span class="status-pip"></span> VOICE AUTHENTICITY / DEFENSE SYSTEM</span>
+                            <h2 id="hero-title">Your Voice.<br>Your Identity.<br><span>Protected.</span></h2>
+                            <p>Explore a voice-security demo built to surface the signals that matter. Uploads play locally; genuine detection requires a connected inference service.</p>
+                            <div class="hero-actions">
+                                <button type="button" class="btn btn-primary btn-lg" id="start-voice-analysis">Start Voice Analysis</button>
+                                <a class="btn btn-outline btn-lg" href="#overview" id="view-dashboard-btn">View Dashboard</a>
+                            </div>
+                            <div class="hero-footnote"><span class="demo-badge">SANDBOX</span> Demo telemetry and sample profiles are illustrative, not live security decisions.</div>
+                        </div>
+                        <div class="core-scene" id="core-scene" aria-label="Decorative animated AI core">
+                            <div class="core-orbit core-orbit-one"></div>
+                            <div class="core-orbit core-orbit-two"></div>
+                            <div class="core-orbit core-orbit-three"></div>
+                            <div class="core-halo"></div>
+                            <div class="core-sphere">
+                                    <canvas id="ai-core-webgl" aria-hidden="true"></canvas>
+                                    <canvas id="ai-core-canvas" aria-hidden="true"></canvas>
+                                    <span class="core-mark">VG<span>·</span>AI</span>
+                            </div>
+                            <span class="core-caption">VOICE DEFENSE CORE <span>VISUAL DEMO</span></span>
+                        </div>
+                    </section>
+
+                    <!-- Key Metrics Grid -->
+                    <div class="metrics-grid">
+                        <!-- Metric 1: Total Voice Analyses -->
+                        <div class="metric-card">
+                            <div class="metric-card-top">
+                                <span class="metric-title">TOTAL VOICE ANALYSES</span>
+                                <div class="metric-icon-wrap icon-blue">
+                                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none">
+                                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="metric-card-body">
+                                <div class="metric-number" id="metric-total-calls">0</div>
+                                <div class="metric-subtext">
+                                    <span class="trend-up">&uarr; Live API</span>
+                                    <span class="subtext-note">SQLite Telemetry</span>
+                                </div>
+                            </div>
+                            <div class="metric-progress-bg">
+                                <div class="metric-progress-bar bar-blue" style="width: 100%;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Metric 2: Authentic Voice Results -->
+                        <div class="metric-card">
+                            <div class="metric-card-top">
+                                <span class="metric-title">AUTHENTIC VOICE RESULTS</span>
+                                <div class="metric-icon-wrap icon-green">
+                                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                        <polyline points="9 12 11 14 15 10"></polyline>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="metric-card-body">
+                                <div class="metric-number text-success" id="metric-genuine-voices">0</div>
+                                <div class="metric-subtext">
+                                    <span class="trend-neutral">Verified</span>
+                                    <span class="subtext-note">Biological Voiceprints</span>
+                                </div>
+                            </div>
+                            <div class="metric-progress-bg">
+                                <div class="metric-progress-bar bar-green" style="width: 100%;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Metric 3: Synthetic Voice Results -->
+                        <div class="metric-card">
+                            <div class="metric-card-top">
+                                <span class="metric-title">SYNTHETIC VOICE RESULTS</span>
+                                <div class="metric-icon-wrap icon-red">
+                                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none">
+                                        <polygon points="12 2 2 22 22 22 12 2"></polygon>
+                                        <line x1="12" y1="9" x2="12" y2="13"></line>
+                                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="metric-card-body">
+                                <div class="metric-number text-danger" id="metric-critical-alerts">0</div>
+                                <div class="metric-subtext">
+                                    <span class="trend-danger">TTS Clones</span>
+                                    <span class="subtext-note">Flagged Impersonations</span>
+                                </div>
+                            </div>
+                            <div class="metric-progress-bg">
+                                <div class="metric-progress-bar bar-red" style="width: 0%;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Metric 4: Suspicious Voice Results -->
+                        <div class="metric-card">
+                            <div class="metric-card-top">
+                                <span class="metric-title">SUSPICIOUS VOICE RESULTS</span>
+                                <div class="metric-icon-wrap icon-amber">
+                                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="metric-card-body">
+                                <div class="metric-number text-warning" id="metric-suspicious-voices">0</div>
+                                <div class="metric-subtext">
+                                    <span class="trend-warn">Anomalies</span>
+                                    <span class="subtext-note">Vocal Jitter & Phase</span>
+                                </div>
+                            </div>
+                            <div class="metric-progress-bg">
+                                <div class="metric-progress-bar bar-amber" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Charts & Overview Panels Grid -->
+                    <div class="grid-layout-2-col">
+                        <!-- 24-Hour Call Stream Activity Chart -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div>
+                                    <h3 class="card-title">24-Hour Call Inspection Volume</h3>
+                                    <p class="card-subtitle">Illustrative sample traffic vs flagged events (UTC)</p>
+                                </div>
+                                <div class="chart-legend">
+                                    <span class="legend-item"><span class="legend-color legend-blue"></span> Clean Calls</span>
+                                    <span class="legend-item"><span class="legend-color legend-purple"></span> Flagged Calls</span>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="canvas-chart-container">
+                                    <canvas id="overview-trend-canvas" width="600" height="240"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Threat Prevention Status & Quick Actions -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div>
+                                    <h3 class="card-title">Sample Threat Vectors</h3>
+                                    <p class="card-subtitle">Identified attack models across current telemetry</p>
+                                </div>
+                                <span class="badge badge-purple">DEMO DATA</span>
+                            </div>
+                            <div class="card-body">
+                                <div class="threat-vector-list">
+
+                                    <div class="threat-vector-item">
+                                        <div class="vector-header">
+                                            <span class="vector-name">Diffusion-based Voice Cloning (TTS)</span>
+                                            <span class="vector-val text-danger">44% of incidents</span>
+                                        </div>
+                                        <div class="vector-meter">
+                                            <div class="vector-fill bg-danger" style="width: 44%;"></div>
+                                        </div>
+                                        <p class="vector-desc">Synthesized speaker profiles targeting executive authorization lines.</p>
+                                    </div>
+
+                                    <div class="threat-vector-item">
+                                        <div class="vector-header">
+                                            <span class="vector-name">Real-Time Conversational Latency Injection</span>
+                                            <span class="vector-val text-warning">28% of incidents</span>
+                                        </div>
+                                        <div class="vector-meter">
+                                            <div class="vector-fill bg-warning" style="width: 28%;"></div>
+                                        </div>
+                                        <p class="vector-desc">Speech-to-speech AI translation models with unnatural pauses.</p>
+                                    </div>
+
+                                    <div class="threat-vector-item">
+                                        <div class="vector-header">
+                                            <span class="vector-name">Acoustic Replay & Spectral Splicing</span>
+                                            <span class="vector-val text-info">18% of incidents</span>
+                                        </div>
+                                        <div class="vector-meter">
+                                            <div class="vector-fill bg-info" style="width: 18%;"></div>
+                                        </div>
+                                        <p class="vector-desc">Pre-recorded authentic snippets stitched into dynamic conversations.</p>
+                                    </div>
+
+                                    <div class="threat-vector-item">
+                                        <div class="vector-header">
+                                            <span class="vector-name">Pitch-Shift & Formant Perturbation</span>
+                                            <span class="vector-val text-muted">10% of incidents</span>
+                                        </div>
+                                        <div class="vector-meter">
+                                            <div class="vector-fill bg-purple" style="width: 10%;"></div>
+                                        </div>
+                                        <p class="vector-desc">Frequency modulation attempts to bypass biometric thresholds.</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Critical Detection Feed -->
+                    <div class="card mt-4">
+                        <div class="card-header">
+                            <div>
+                                <h3 class="card-title">Recent Interception Activity</h3>
+                                <p class="card-subtitle">Illustrative incident records · no automated actions are connected</p>
+                            </div>
+                            <button class="btn btn-sm btn-outline" id="view-all-threats-btn">View All in Threat Intel &rarr;</button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>CALL ID</th>
+                                        <th>TIMESTAMP</th>
+                                        <th>ORIGIN / GATEWAY</th>
+                                        <th>TARGET DEPARTMENT</th>
+                                        <th>DETECTED VECTOR</th>
+                                        <th>RISK LEVEL</th>
+                                        <th>ACTION TAKEN</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="overview-recent-table">
+                                    <!-- Injected via JavaScript from sample data -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ==================================================== -->
+                <!-- 2. VOICE ANALYSIS                                    -->
+                <!-- ==================================================== -->
+                <section id="view-analysis" class="view-section">
+                    <div class="section-header">
+                        <div>
+                            <h1 class="section-title">Deep Voice Forensics & Analysis</h1>
+                            <p class="section-desc">Play a local audio file, record speech, or execute deep AI neural inference against voice cloning attacks.</p>
+                        </div>
+                        <div class="workspace-scene" data-scene="waveform" role="img" aria-label="Decorative three-dimensional audio waveform; not an analysis result"><span class="scene-caption">VISUAL ONLY</span></div>
+                        <span class="badge badge-purple demo-badge" id="model-status-badge">AASIST / RAWNET2 READY</span>
+                    </div>
+
+                    <!-- Central Upload Panel -->
+                    <div class="central-upload-panel">
+                        <h2 class="central-panel-title">ANALYZE YOUR AUDIO</h2>
+                        <p class="central-panel-subtitle">Upload or record an audio sample to evaluate its authenticity using AI-powered voice analysis.</p>
+
+                        <div class="upload-dropzone-large" id="central-audio-dropzone">
+                            <input type="file" id="central-file-input" accept="audio/*,.wav,.mp3,.flac,.ogg,.m4a,.aac,.webm,.opus,.mpeg,.mpg" class="file-input-hidden" style="display: none;">
+                            <div class="dropzone-icon-circle">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                            </div>
+                            <div class="dropzone-main-text">Click or Drag &amp; Drop audio file here</div>
+                            <div class="dropzone-sub-text">Automated magic byte inspection, stereo-to-mono normalization &amp; 16kHz resampling</div>
+                            <span class="dropzone-limits-tag">Supported: WAV, MP3, MPEG, MPG, FLAC, OGG, M4A, AAC, WEBM (Max 25MB)</span>
+                        </div>
+
+                        <!-- Real-Time Microphone Recording Strip -->
+                        <div class="mic-recording-strip">
+                            <div class="mic-action-group">
+                                <button type="button" class="btn-mic-record" id="btn-mic-toggle">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
+                                    <span>Record from Microphone</span>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline" id="btn-mic-pause" style="display: none; padding: 6px 12px; font-size: 0.8rem;" title="Pause / Resume Recording">
+                                    <span>Pause</span>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline" id="btn-mic-clear" style="display: none; padding: 6px 12px; font-size: 0.8rem; color: #ef4444; border-color: rgba(239,68,68,0.4);" title="Cancel Recording">
+                                    <span>Reset</span>
+                                </button>
+                                <span class="mic-timer-display" id="mic-recording-timer">00:00</span>
+                            </div>
+                            <div class="mic-canvas-wrapper">
+                                <canvas id="mic-waveform-canvas" class="mic-canvas-element" width="320" height="40"></canvas>
+                            </div>
+                            <span id="mic-status-label" style="font-size: 0.8rem; color: var(--cyber-text-dim); font-family: var(--cyber-font-mono);">Microphone ready</span>
+                        </div>
+
+                        <!-- Selected File Preview & Analyze Action -->
+                        <div id="loaded-file-meta-card" style="display: none; margin-top: 20px; padding: 18px 22px; border-radius: 10px; background: rgba(8, 13, 26, 0.9); border: 1px solid var(--cyber-cyan);">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 12px;">
+                                <div>
+                                    <strong id="meta-file-name" style="font-size: 1rem; color: #ffffff;">sample.wav</strong>
+                                    <div style="font-size: 0.8rem; color: var(--cyber-text-dim); margin-top: 2px;">
+                                        Format: <span id="meta-file-type" style="color: var(--cyber-cyan); font-weight: 600;">WAV</span> &bull; Size: <span id="meta-file-size">1.2 MB</span> &bull; Duration: <span id="meta-file-duration" style="color: #38bdf8;">--</span> &bull; Target: 16kHz Mono PCM
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                                    <select id="select-ai-model" class="cyber-select" style="padding: 8px 12px; font-size: 0.85rem; background: rgba(15, 23, 42, 0.9); border: 1px solid var(--cyber-cyan); color: #38bdf8; border-radius: 6px; font-family: var(--cyber-font-mono); cursor: pointer;" title="Select Deepfake Detection Neural Model">
+                                        <option value="AASIST" selected>Model: AASIST (Graph Attention)</option>
+                                        <option value="RAWNET2">Model: RawNet2 (SincNet + GRU)</option>
+                                    </select>
+                                    <button type="button" class="btn btn-sm btn-outline" id="btn-remove-loaded-file" style="padding: 8px 16px; font-size: 0.82rem; color: #f87171; border-color: rgba(248,113,113,0.4);" title="Remove this audio file">
+                                        <span>Remove Audio</span>
+                                    </button>
+                                    <button type="button" class="btn-cyber-primary" id="btn-execute-analysis" style="padding: 10px 24px;">
+                                        <span>Start AI Analysis</span> &rarr;
+                                    </button>
+                                </div>
+                            </div>
+                            <audio id="central-audio-player" controls style="width: 100%; height: 38px; display: none; margin-top: 10px;"></audio>
+                        </div>
+                    </div>
+
+                    <!-- 7-Stage AI Analysis Pipeline Interface -->
+                    <div class="ai-7stage-pipeline" id="ai-7stage-pipeline" style="display: none;">
+                        <div class="pipeline-header">
+                            <div class="pipeline-title"><span class="pulsing-status-dot"></span> NEURAL FORENSIC ENGINE ACTIVE</div>
+                            <span class="pipeline-subtitle">Executing 7-Stage Spectro-Temporal Verification</span>
+                        </div>
+                        <div class="stages-list">
+                            <div class="pipeline-step-item" id="pipeline-step-1">
+                                <span class="step-num">01</span>
+                                <div class="step-info">
+                                    <strong>Audio Uploading</strong>
+                                    <small>Ingesting audio payload & validating magic byte headers</small>
+                                </div>
+                                <span class="step-state-badge">PENDING</span>
+                            </div>
+                            <div class="pipeline-step-item" id="pipeline-step-2">
+                                <span class="step-num">02</span>
+                                <div class="step-info">
+                                    <strong>Audio Preprocessing</strong>
+                                    <small>Downmixing to mono & resampling to uniform 16kHz target spec</small>
+                                </div>
+                                <span class="step-state-badge">PENDING</span>
+                            </div>
+                            <div class="pipeline-step-item" id="pipeline-step-3">
+                                <span class="step-num">03</span>
+                                <div class="step-info">
+                                    <strong>Feature Extraction</strong>
+                                    <small>Extracting Linear Frequency & Constant-Q Cepstral Coefficients</small>
+                                </div>
+                                <span class="step-state-badge">PENDING</span>
+                            </div>
+                            <div class="pipeline-step-item" id="pipeline-step-4">
+                                <span class="step-num">04</span>
+                                <div class="step-info">
+                                    <strong>Voice Pattern Analysis</strong>
+                                    <small>Evaluating vocal tract resonances, formant stability & pitch jitter</small>
+                                </div>
+                                <span class="step-state-badge">PENDING</span>
+                            </div>
+                            <div class="pipeline-step-item" id="pipeline-step-5">
+                                <span class="step-num">05</span>
+                                <div class="step-info">
+                                    <strong>Synthetic Voice Detection</strong>
+                                    <small>AASIST Graph Attention & RawNet2 temporal vocoder anomaly scan</small>
+                                </div>
+                                <span class="step-state-badge">PENDING</span>
+                            </div>
+                            <div class="pipeline-step-item" id="pipeline-step-6">
+                                <span class="step-num">06</span>
+                                <div class="step-info">
+                                    <strong>Authenticity Assessment</strong>
+                                    <small>Multi-criteria risk scoring engine & calibrated thresholding</small>
+                                </div>
+                                <span class="step-state-badge">PENDING</span>
+                            </div>
+                            <div class="pipeline-step-item" id="pipeline-step-7">
+                                <span class="step-num">07</span>
+                                <div class="step-info">
+                                    <strong>Final Report Generation</strong>
+                                    <small>Cryptographic SHA-256 fingerprinting & audit packaging</small>
+                                </div>
+                                <span class="step-state-badge">PENDING</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Detection Results Panel with Circular Confidence Gauge -->
+                    <div id="detection-results-panel" class="card mb-4" style="display: none; background: rgba(9, 14, 28, 0.95); border: 1px solid var(--cyber-cyan);">
+                        <div class="card-header" style="border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 16px;">
+                            <div>
+                                <h3 class="card-title" style="color: #ffffff; font-size: 1.25rem;">AI Forensic Detection Report</h3>
+                                <p class="card-subtitle">Comprehensive acoustic classification and biometric audit summary</p>
+                            </div>
+                            <div id="res-verdict-badge" class="verdict-badge-amber">ANALYSIS COMPLETE</div>
+                        </div>
+                        <div class="card-body">
+                            <div style="display: grid; grid-template-columns: 180px 1fr; gap: 32px; align-items: center;" class="res-grid-wrap">
+                                <!-- Circular Confidence Meter -->
+                                <div class="circular-score-wrapper">
+                                    <svg class="score-circular-chart" viewBox="0 0 36 36">
+                                        <path class="circle-bg"
+                                            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                            fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="2.5" />
+                                        <path id="res-confidence-circle" class="circle-progress"
+                                            stroke-dasharray="100, 100" stroke-dashoffset="100"
+                                            d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                            fill="none" stroke="#00f2fe" stroke-width="2.8" stroke-linecap="round" />
+                                    </svg>
+                                    <div class="score-inner-content">
+                                        <span id="res-confidence-text" class="score-percentage">--</span>
+                                        <span class="score-label">CONFIDENCE</span>
+                                    </div>
+                                </div>
+
+                                <!-- Result Explanations & Technical Details -->
+                                <div>
+                                    <div id="res-status-detail" style="font-size: 0.92rem; line-height: 1.6; color: var(--cyber-text-muted); margin-bottom: 18px;">
+                                        <!-- Injected via app-controller.js -->
+                                    </div>
+                                    <div style="display: flex; gap: 24px; flex-wrap: wrap; font-size: 0.85rem; font-family: var(--cyber-font-mono); color: var(--cyber-text-dim);">
+                                        <div>File: <strong id="res-filename" style="color: #ffffff;">sample.wav</strong></div>
+                                        <div>Size: <strong id="res-filesize" style="color: #ffffff;">0 KB</strong></div>
+                                        <div>Standard: <strong style="color: var(--cyber-cyan);">AASIST v2 / SIH26104</strong></div>
+                                    </div>
+                                    <div style="margin-top: 18px; display: flex; gap: 12px;">
+                                        <a href="/api/reports/export" class="btn btn-outline btn-sm" id="btn-download-results-csv">
+                                            <span>Download Forensic Audit CSV</span> &darr;
+                                        </a>
+                                        <a href="#history" class="btn btn-sm btn-outline" style="border-color: rgba(255,255,255,0.15);">View Detection History &rarr;</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 2D Log-Mel Spectrogram Heatmap Visualization -->
+                            <div id="detection-spectrogram-container" style="margin-top: 24px;"></div>
+
+                            <!-- Phase 3: Advanced Audio Forensics & Signal Quality Analysis Engine -->
+                            <div id="audio-forensics-panel" class="audio-forensics-section" style="margin-top: 28px; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 24px;">
+                                <div class="forensics-section-header">
+                                    <div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+                                        <div>
+                                            <h4 style="color: #ffffff; font-size: 1.1rem; margin: 0; display: flex; align-items: center; gap: 8px;">
+                                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="var(--cyber-cyan)" stroke-width="2" fill="none">
+                                                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                                                </svg>
+                                                Phase 3: Advanced Audio Forensics & Signal Quality
+                                            </h4>
+                                            <p style="color: var(--cyber-text-muted); font-size: 0.82rem; margin: 4px 0 0 0;">
+                                                Empirical acoustic diagnostics: SNR, noise floor, digital clipping, silence & voice activity detection
+                                            </p>
+                                        </div>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="badge badge-outline" style="border-color: var(--cyber-cyan); color: var(--cyber-cyan); font-size: 0.75rem;">EMPIRICAL DSP</span>
+                                            <span class="badge badge-outline" style="border-color: rgba(255,255,255,0.15); color: var(--cyber-text-dim); font-size: 0.75rem;">ZERO-HALLUCINATION</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Forensics Metrics 4-Column Grid -->
+                                <div class="forensics-metrics-grid mt-3">
+                                    <!-- 1. Audio Quality Score -->
+                                    <div class="forensics-card">
+                                        <div class="forensics-card-header">
+                                            <span class="forensics-card-title">Audio Quality Score</span>
+                                            <span id="forensics-quality-badge" class="badge badge-success">PRISTINE</span>
+                                        </div>
+                                        <div class="forensics-score-body">
+                                            <div class="forensics-gauge-wrap">
+                                                <svg class="forensics-gauge-svg" viewBox="0 0 36 36">
+                                                    <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="3" />
+                                                    <path id="forensics-quality-circle" class="circle-progress" stroke-dasharray="100, 100" stroke-dashoffset="100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#10b981" stroke-width="3.2" stroke-linecap="round" />
+                                                </svg>
+                                                <div class="gauge-center-text">
+                                                    <span id="forensics-quality-score-num">--</span>
+                                                    <span class="gauge-sub">/ 100</span>
+                                                </div>
+                                            </div>
+                                            <div class="forensics-score-info">
+                                                <div id="forensics-quality-grade-text" style="font-weight: 600; color: #fff; font-size: 0.88rem;">Evaluating Signal...</div>
+                                                <div class="forensics-breakdown-list mt-1">
+                                                    <div class="breakdown-row"><span>SNR Component:</span><strong id="fb-snr-pts">-- / 30</strong></div>
+                                                    <div class="breakdown-row"><span>Clipping Penalty:</span><strong id="fb-clip-pts">-- / 20</strong></div>
+                                                    <div class="breakdown-row"><span>Noise Floor:</span><strong id="fb-floor-pts">-- / 20</strong></div>
+                                                    <div class="breakdown-row"><span>Dynamic Range:</span><strong id="fb-dyn-pts">-- / 15</strong></div>
+                                                    <div class="breakdown-row"><span>Speech Dynamics:</span><strong id="fb-speech-pts">-- / 15</strong></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="forensics-disclaimer-note">
+                                            <svg viewBox="0 0 24 24" width="13" height="13" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                                            <span>Quality reflects recording hygiene, NOT AI spoof probability.</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- 2. Signal-to-Noise Ratio (SNR) -->
+                                    <div class="forensics-card">
+                                        <div class="forensics-card-header">
+                                            <span class="forensics-card-title">Signal-to-Noise Ratio</span>
+                                            <span id="forensics-snr-badge" class="badge badge-info">--</span>
+                                        </div>
+                                        <div class="forensics-metric-body">
+                                            <div class="d-flex align-items-baseline gap-2">
+                                                <span id="forensics-snr-val" class="forensics-big-num">--</span>
+                                                <span class="forensics-unit">dB</span>
+                                            </div>
+                                            <!-- SNR Graduated Bar Meter -->
+                                            <div class="snr-gradient-meter-wrap mt-2">
+                                                <div class="snr-gradient-bar">
+                                                    <div id="snr-meter-marker" class="snr-marker" style="left: 0%;"></div>
+                                                </div>
+                                                <div class="snr-scale-labels">
+                                                    <span>0 dB</span>
+                                                    <span>12 dB</span>
+                                                    <span>25 dB</span>
+                                                    <span>40+ dB</span>
+                                                </div>
+                                            </div>
+                                            <div id="forensics-snr-interpretation" class="forensics-desc-text mt-2">
+                                                Awaiting audio signal evaluation...
+                                            </div>
+                                            <div class="forensics-substats mt-2">
+                                                <div>Speech Power: <strong id="forensics-speech-pwr">-- dBFS</strong></div>
+                                                <div>Noise Power: <strong id="forensics-noise-pwr">-- dBFS</strong></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 3. Background Noise & Floor -->
+                                    <div class="forensics-card">
+                                        <div class="forensics-card-header">
+                                            <span class="forensics-card-title">Background Noise & Floor</span>
+                                            <span id="forensics-noise-intensity-badge" class="badge badge-outline">--</span>
+                                        </div>
+                                        <div class="forensics-metric-body">
+                                            <div class="d-flex align-items-baseline gap-2">
+                                                <span id="forensics-noise-floor-val" class="forensics-big-num">--</span>
+                                                <span class="forensics-unit">dBFS</span>
+                                            </div>
+                                            <div id="forensics-noise-floor-interp" class="forensics-desc-text mt-1">
+                                                Ambient acoustic floor level
+                                            </div>
+                                            <div class="forensics-details-table mt-2">
+                                                <div class="table-row"><span>Noise Intensity:</span><strong id="forensics-noise-intensity-text">--</strong></div>
+                                                <div class="table-row"><span>Mean Noise Power:</span><strong id="forensics-mean-noise-dbfs">-- dBFS</strong></div>
+                                                <div class="table-row"><span>Peak Noise Spike:</span><strong id="forensics-peak-noise-dbfs">-- dBFS</strong></div>
+                                                <div class="table-row"><span>Noisy Segments:</span><strong id="forensics-noisy-segments-count">0</strong></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 4. Digital Audio Clipping Detection -->
+                                    <div class="forensics-card">
+                                        <div class="forensics-card-header">
+                                            <span class="forensics-card-title">Audio Clipping Detection</span>
+                                            <span id="forensics-clipping-badge" class="badge badge-success">CLEAN</span>
+                                        </div>
+                                        <div class="forensics-metric-body">
+                                            <div class="d-flex align-items-baseline gap-2">
+                                                <span id="forensics-clipping-pct" class="forensics-big-num">0.00%</span>
+                                                <span class="forensics-unit">clipped</span>
+                                            </div>
+                                            <div id="forensics-clipping-status-text" class="forensics-desc-text mt-1">
+                                                No waveform saturation or ADC sample clipping detected.
+                                            </div>
+                                            <div class="forensics-details-table mt-2">
+                                                <div class="table-row"><span>Saturated Samples:</span><strong id="forensics-clipped-samples-count">0</strong></div>
+                                                <div class="table-row"><span>Severity:</span><strong id="forensics-clipping-severity">None</strong></div>
+                                                <div class="table-row"><span>Affected Intervals:</span><strong id="forensics-clipped-intervals-count">0</strong></div>
+                                            </div>
+                                            <div id="forensics-clipping-intervals-container" class="clipping-chips-container mt-2">
+                                                <!-- Populated dynamically via JS -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Dual Interactive Timelines -->
+                                <div class="forensics-timelines-wrap mt-4">
+                                    <!-- Timeline 1: Silence & Pause Distribution -->
+                                    <div class="timeline-card">
+                                        <div class="timeline-header">
+                                            <div class="d-flex align-items-center gap-2">
+                                                <span class="timeline-dot dot-silence"></span>
+                                                <strong style="font-size: 0.88rem; color: #fff;">Silence & Pause Distribution Timeline</strong>
+                                            </div>
+                                            <div class="timeline-stats" id="silence-timeline-stats">
+                                                Total Silence: 0.00s (0.0%) · 0 pauses
+                                            </div>
+                                        </div>
+                                        <div class="timeline-bar-wrapper">
+                                            <div id="silence-timeline-bar" class="forensics-timeline-bar" role="progressbar" aria-label="Silence distribution timeline">
+                                                <!-- Dynamic segments injected via JS -->
+                                            </div>
+                                        </div>
+                                        <div class="timeline-legend">
+                                            <span class="legend-item"><span class="legend-color legend-audible"></span>Audible Signal</span>
+                                            <span class="legend-item"><span class="legend-color legend-silent"></span>Detected Silence / Pause</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Timeline 2: Voice Activity Detection (VAD) -->
+                                    <div class="timeline-card mt-3">
+                                        <div class="timeline-header">
+                                            <div class="d-flex align-items-center gap-2">
+                                                <span class="timeline-dot dot-vad"></span>
+                                                <strong style="font-size: 0.88rem; color: #fff;">Voice Activity Detection (Speech vs. Non-Speech)</strong>
+                                            </div>
+                                            <div class="timeline-stats" id="vad-timeline-stats">
+                                                Speech: 0.00s (0.0%) · Non-Speech: 0.00s (0.0%)
+                                            </div>
+                                        </div>
+                                        <div class="timeline-bar-wrapper">
+                                            <div id="vad-timeline-bar" class="forensics-timeline-bar" role="progressbar" aria-label="Voice Activity Detection timeline">
+                                                <!-- Dynamic segments injected via JS -->
+                                            </div>
+                                        </div>
+                                        <div class="timeline-legend">
+                                            <span class="legend-item"><span class="legend-color legend-speech"></span>Active Speech Segment</span>
+                                            <span class="legend-item"><span class="legend-color legend-nonspeech"></span>Non-Speech / Background</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid-layout-2-col">
+                        <!-- Left: Audio Upload & Player Area -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div>
+                                    <h3 class="card-title">1. Audio Ingestion</h3>
+                                    <p class="card-subtitle">Upload audio file (.wav, .mp3, .flac) or test preset samples</p>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <!-- Dropzone Area -->
+                                <div class="dropzone" id="audio-dropzone">
+                                    <input type="file" id="audio-file-input" accept="audio/*,.wav,.mp3,.flac,.ogg,.m4a,.aac,.webm,.opus,.mpeg,.mpg" class="file-input-hidden">
+                                    <div class="dropzone-content">
+                                        <div class="dropzone-icon">
+                                            <svg viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                      </svg>
+                                        </div>
+                                        <div class="dropzone-text">
+                                            <span class="dropzone-primary-text">Drag & drop voice audio here</span>
+                                            <span class="dropzone-secondary-text">or <button type="button" class="btn-link" id="btn-browse-file">browse local storage</button></span>
+                                        </div>
+                                        <div class="dropzone-formats">Supported: WAV, MP3, MPEG, MPG, FLAC, OGG (Max 25MB)</div>
+                                    </div>
+                                </div>
+
+                                <div class="microphone-controls">
+                                    <button class="btn btn-outline btn-sm" id="btn-start-recording" type="button">Record with microphone</button>
+                                    <button class="btn btn-outline btn-sm" id="btn-stop-recording" type="button" disabled>Stop recording</button>
+                                    <span id="microphone-status" role="status">Microphone access is optional. Recordings stay in this browser.</span>
+                                </div>
+
+                                <!-- Preset Sample Buttons for instant testing -->
+                                <div class="preset-samples-box">
+                                    <span class="preset-label">OR TEST WITH SAMPLE FORENSIC PROFILES:</span>
+                                    <div class="preset-buttons-group">
+                                        <button type="button" class="btn btn-sm btn-outline preset-btn" data-preset="deepfake">
+                      <span class="preset-indicator bg-danger"></span>
+                      Preset 1: AI Clone (High Risk)
+                    </button>
+                                        <button type="button" class="btn btn-sm btn-outline preset-btn" data-preset="genuine">
+                      <span class="preset-indicator bg-success"></span>
+                      Preset 2: Biological Voice (Clean)
+                    </button>
+                                        <button type="button" class="btn btn-sm btn-outline preset-btn" data-preset="suspicious">
+                      <span class="preset-indicator bg-warning"></span>
+                      Preset 3: Voice Changer (Suspicious)
+                    </button>
+                                    </div>
+                                </div>
+
+                                <!-- Loaded Audio Metadata & Native Player -->
+                                <div class="loaded-audio-card" id="loaded-audio-card" style="display: none;">
+                                    <div class="audio-meta-header">
+                                        <div class="audio-file-info">
+                                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none">
+                        <path d="M9 18V5l12-2v13"></path>
+                        <circle cx="6" cy="18" r="3"></circle>
+                        <circle cx="18" cy="16" r="3"></circle>
+                      </svg>
+                                            <div>
+                                                <div class="audio-filename" id="audio-filename">sample_audio.wav</div>
+                                                <div class="audio-specs" id="audio-specs">WAV • 16-bit PCM • 44.1 kHz</div>
+                                            </div>
+                                        </div>
+                                        <span class="badge badge-info" id="audio-status-badge">Loaded</span>
+                                    </div>
+
+                                    <!-- Integrated Audio Element -->
+                                    <div class="audio-player-wrapper">
+                                        <audio id="audio-player" preload="metadata" controls class="custom-native-player"></audio>
+                                    </div>
+                                    <div class="audio-visualizer-wrap">
+                                        <div class="audio-visualizer-heading">
+                                            <span>LOCAL PLAYBACK SIGNAL</span>
+                                            <span id="audio-visualizer-status">Decorative idle visualization</span>
+                                        </div>
+                                        <canvas id="audio-visualizer-canvas" width="720" height="96" role="img" aria-label="Audio playback waveform visualization"></canvas>
+                                        <p class="visualizer-disclaimer">Playback visualization only · not an AI detection result</p>
+                                    </div>
+                                </div>
+
+                                <!-- Analyze Action Button -->
+                                <div class="analysis-action-wrapper mt-4">
+                                    <button type="button" class="btn btn-primary btn-block btn-lg" id="btn-run-analysis" disabled>
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none">
+                      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                    <span id="btn-analysis-text">Analyze Voice Sample</span>
+                  </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right: Analysis Result Area -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div>
+                                    <h3 class="card-title">2. Acoustic Telemetry & Classification</h3>
+                                    <p class="card-subtitle">Deep learning neural artifact & voice verification score</p>
+                                </div>
+                                <span class="badge" id="result-status-tag">Awaiting Audio</span>
+                            </div>
+                            <div class="card-body">
+                                <!-- Idle State: Initial placeholder before analysis -->
+                                <div class="empty-state" id="analysis-idle-state">
+                                    <div class="empty-state-icon">
+                                        <svg viewBox="0 0 24 24" width="48" height="48" stroke="currentColor" stroke-width="1.5" fill="none">
+                      <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"></path>
+                      <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                      <line x1="12" y1="19" x2="12" y2="23"></line>
+                    </svg>
+                                    </div>
+                                    <div class="analysis-error-state" id="analysis-error-state" role="status" aria-live="polite" hidden>
+                                        <strong>Detection service unavailable</strong>
+                                        <p id="analysis-error-message">No AI inference backend is connected. Your file can still be played locally, but it cannot be classified here.</p>
+                                    </div>
+                                    <h4 class="empty-state-title">No Audio Ingested</h4>
+                                    <p class="empty-state-desc">Select an audio file or click one of the preset forensic profiles on the left, then click <strong>"Analyze Voice Sample"</strong>.</p>
+                                </div>
+
+                                <!-- Scanning Progress State -->
+                                <div class="scanning-state" id="analysis-scanning-state" style="display: none;">
+                                    <div class="scanning-spinner"></div>
+                                    <h4 class="scanning-title" id="scanning-status-title">Extracting Acoustic Telemetry...</h4>
+                                    <p class="scanning-step" id="scanning-status-step">Running fast Fourier transforms & phase continuity checks...</p>
+                                    <div class="scanning-progress-bar">
+                                        <div class="scanning-progress-fill" id="scanning-progress-fill"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Analysis Result Populated Area -->
+                                <div class="analysis-results" id="analysis-result-content" style="display: none;">
+                                    <div class="demo-result-note"><strong>PRESET DEMONSTRATION</strong><span>Values below are sample profile data, not a model inference.</span></div>
+                                    <!-- Primary Verdict Box -->
+                                    <div class="verdict-banner" id="verdict-banner">
+                                        <div class="verdict-icon" id="verdict-icon">
+                                            <!-- Injected via JS -->
+                                        </div>
+                                        <div class="verdict-text">
+                                            <span class="verdict-eyebrow">VERDICT CLASSIFICATION</span>
+                                            <h2 class="verdict-heading" id="verdict-heading">HIGH-RISK SYNTHETIC CLONE</h2>
+                                            <p class="verdict-summary" id="verdict-summary">Acoustic signature matches neural speech synthesis. Strong vocoder phase artifacts detected.</p>
+                                        </div>
+                                        <div class="verdict-score-box">
+                                            <div class="verdict-score-val" id="verdict-score-val">97.4%</div>
+                                            <div class="verdict-score-lbl">Deepfake Probability</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Acoustic Feature Scores -->
+                                    <div class="acoustic-metrics-grid mt-4">
+                                        <div class="acoustic-metric-card">
+                                            <div class="acoustic-metric-header">
+                                                <span>Vocoder Phase Artifacts</span>
+                                                <strong class="text-danger" id="metric-vocoder-val">High (94%)</strong>
+                                            </div>
+                                            <div class="metric-meter">
+                                                <div class="meter-bar bg-danger" id="meter-vocoder" style="width: 94%;"></div>
+                                            </div>
+                                            <span class="metric-hint">Unnatural high-frequency harmonic phase</span>
+                                        </div>
+
+                                        <div class="acoustic-metric-card">
+                                            <div class="acoustic-metric-header">
+                                                <span>Pitch Jitter & Micro-Tremors</span>
+                                                <strong class="text-warning" id="metric-pitch-val">Unnatural (14%)</strong>
+                                            </div>
+                                            <div class="metric-meter">
+                                                <div class="meter-bar bg-warning" id="meter-pitch" style="width: 14%;"></div>
+                                            </div>
+                                            <span class="metric-hint">Lacks natural human vocal cord fluctuation</span>
+                                        </div>
+
+                                        <div class="acoustic-metric-card">
+                                            <div class="acoustic-metric-header">
+                                                <span>Mel-Spectrogram Continuity</span>
+                                                <strong class="text-info" id="metric-spectral-val">Discontinuous (38%)</strong>
+                                            </div>
+                                            <div class="metric-meter">
+                                                <div class="meter-bar bg-info" id="meter-spectral" style="width: 38%;"></div>
+                                            </div>
+                                            <span class="metric-hint">Splicing anomalies at phoneme boundaries</span>
+                                        </div>
+
+                                        <div class="acoustic-metric-card">
+                                            <div class="acoustic-metric-header">
+                                                <span>Biological Breath & Formant Ratio</span>
+                                                <strong class="text-danger" id="metric-breath-val">Missing (08%)</strong>
+                                            </div>
+                                            <div class="metric-meter">
+                                                <div class="meter-bar bg-danger" id="meter-breath" style="width: 8%;"></div>
+                                            </div>
+                                            <span class="metric-hint">Synthetic silence between syllables</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Model Signature Attribution -->
+                                    <div class="signature-attribution-card mt-3">
+                                        <div class="signature-header">
+                                            <span class="sig-title">ATTRIBUTED SYNTHESIS ARCHITECTURE:</span>
+                                            <span class="sig-badge" id="sig-model-name">ElevenLabs v2 / Diffusion Latent TTS</span>
+                                        </div>
+                                        <p class="sig-details" id="sig-details">Matches statistical latent distribution of multi-speaker diffusion acoustic synthesizers trained on scraped web audio.</p>
+                                    </div>
+
+                                    <!-- Recommendation & SOC Protocol -->
+                                    <div class="action-recommendation-box mt-3" id="action-recommendation-box">
+                                        <div class="rec-title">RECOMMENDED SECURITY PROTOCOL:</div>
+                                        <div class="rec-text" id="rec-text">Quarantine active voice channel immediately. Require step-up out-of-band biometric authentication (FIDO2 / Hardware token).</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ==================================================== -->
+                <!-- 3. LIVE MONITORING                                   -->
+                <!-- ==================================================== -->
+                <section id="view-live-monitoring" class="view-section">
+                    <div class="section-header">
+                        <div>
+                            <h1 class="section-title">Live Microphone Monitoring</h1>
+                            <p class="section-desc">Stream microphone audio for live acoustic telemetry and real-time AI synthetic voice detection.</p>
+                        </div>
+                        <div class="workspace-scene" data-scene="radar" role="img" aria-label="Decorative threat-monitoring radar; no live threat data"><span class="scene-caption">VISUAL ONLY</span></div>
+                        <div class="header-actions">
+                            <div class="live-stream-status" id="stream-status-pill" aria-live="polite">
+                                <span class="pulse-dot"></span>
+                                <span id="stream-status-label">DISCONNECTED</span>
+                            </div>
+                            <button class="btn btn-primary btn-sm" id="btn-start-monitoring" type="button">Start Live Detection</button>
+                            <button class="btn btn-outline btn-sm" id="btn-stop-monitoring" type="button" disabled>Stop Live Detection</button>
+                        </div>
+                    </div>
+                    <p class="workflow-feedback" id="live-monitoring-feedback" role="status" aria-live="polite" hidden></p>
+
+                    <div class="demo-data-banner" id="live-audio-banner" role="note">Live audio is held in memory for the active session and is not stored. Neural detection results reflect active model inference.</div>
+
+                    <div class="card mb-4">
+                        <div class="card-body p-3">
+                            <div class="stream-telemetry-strip">
+                                <div class="telemetry-item">
+                                    <span class="telemetry-lbl">CONNECTION</span>
+                                    <span class="telemetry-val" id="live-connection-status">Disconnected</span>
+                                </div>
+                                <div class="telemetry-item">
+                                    <span class="telemetry-lbl">SESSION ID</span>
+                                    <span class="telemetry-val" id="live-session-id">Not started</span>
+                                </div>
+                                <div class="telemetry-item">
+                                    <span class="telemetry-lbl">AUDIO FORMAT</span>
+                                    <span class="telemetry-val">PCM S16LE · 16 kHz · mono</span>
+                                </div>
+                                <div class="telemetry-item">
+                                    <span class="telemetry-lbl">SESSION DURATION</span>
+                                    <span class="telemetry-val" id="live-duration">00:00</span>
+                                </div>
+                                <div class="telemetry-item">
+                                    <span class="telemetry-lbl">PROCESSING STATUS</span>
+                                    <span class="telemetry-val" id="live-processing-status">IDLE</span>
+                                </div>
+                                <div class="telemetry-item">
+                                    <span class="telemetry-lbl">LAST INFERENCE</span>
+                                    <span class="telemetry-val" id="live-last-inference-time">—</span>
+                                </div>
+                                <div class="telemetry-item">
+                                    <span class="telemetry-lbl">ANALYZED WINDOWS</span>
+                                    <span class="telemetry-val" id="live-analyzed-windows">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid-layout-2-col">
+                        <div class="card">
+                            <div class="card-header">
+                                <div>
+                                    <h3 class="card-title">Live Microphone Waveform</h3>
+                                    <p class="card-subtitle">Real-time microphone input · 16 kHz mono telemetry</p>
+                                </div>
+                                <span class="badge badge-info" id="live-waveform-badge">NOT MONITORING</span>
+                            </div>
+                            <div class="card-body">
+                                <div class="waveform-container">
+                                    <canvas id="live-waveform-canvas" width="600" height="220"></canvas>
+                                    <div class="waveform-overlay-info">
+                                        <span>MICROPHONE INPUT · 16 kHz MONO</span>
+                                    </div>
+                                </div>
+                                <div class="waveform-controls">
+                                    <div class="waveform-stats">
+                                        <span>Audio input level: <strong id="live-input-level">0%</strong></span>
+                                        <span>RMS: <strong id="live-rms-dbfs">—</strong></span>
+                                        <span>Peak: <strong id="live-peak-dbfs">—</strong></span>
+                                    </div>
+                                    <div class="live-input-meter" role="meter" aria-label="Microphone input level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                                        <span id="live-input-meter-fill"></span>
+                                    </div>
+                                    <div class="waveform-legend">
+                                        <span class="legend-dot bg-blue"></span> Live microphone signal
+                                        <span class="text-muted ml-2">Signal quality: <strong id="live-signal-quality">Waiting</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <div>
+                                    <h3 class="card-title">Detection Status</h3>
+                                    <p class="card-subtitle">Dual-model neural anti-spoofing engine (AASIST / RawNet2)</p>
+                                </div>
+                                <span class="badge badge-warning" id="live-model-status">MODEL UNAVAILABLE</span>
+                            </div>
+                            <div class="card-body">
+                                <div class="segmented-risk-container">
+                                    <div class="risk-score-display">
+                                        <span class="score-large text-warning" id="live-detection-status">WAITING FOR AUDIO</span>
+                                        <div class="mt-2" style="font-size: 0.82rem; font-family: var(--font-mono); color: var(--text-muted);">
+                                            Model Confidence Score: <strong id="live-confidence-score" style="color: var(--text-primary);">—</strong>
+                                        </div>
+                                        <div style="font-size: 0.68rem; color: var(--text-muted); font-style: italic; margin-top: 0.15rem;">
+                                            Model confidence is not a guarantee of detection accuracy.
+                                        </div>
+                                        <span class="score-status" id="live-inference-status" style="margin-top: 0.5rem;">IDLE · AWAITING AUDIO</span>
+                                    </div>
+                                </div>
+
+                                <!-- Detailed Metrics Grid: Task 3 Requirements -->
+                                <div class="live-detection-metrics-grid mt-3 p-3" style="background: rgba(15, 23, 42, 0.45); border-radius: 8px; border: 1px solid rgba(148, 163, 184, 0.12); display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.75rem;">
+                                    <div>
+                                        <div style="font-size: 0.65rem; font-family: var(--font-mono); color: var(--text-muted); text-transform: uppercase;">Human Probability</div>
+                                        <div style="font-size: 0.95rem; font-weight: 700; color: #10b981; font-family: var(--font-mono);" id="live-human-prob">—</div>
+                                    </div>
+                                    <div>
+                                        <div style="font-size: 0.65rem; font-family: var(--font-mono); color: var(--text-muted); text-transform: uppercase;">AI Probability</div>
+                                        <div style="font-size: 0.95rem; font-weight: 700; color: #ef4444; font-family: var(--font-mono);" id="live-ai-prob">—</div>
+                                    </div>
+                                    <div>
+                                        <div style="font-size: 0.65rem; font-family: var(--font-mono); color: var(--text-muted); text-transform: uppercase;">Model Name</div>
+                                        <div style="font-size: 0.95rem; font-weight: 600; color: var(--text-primary); font-family: var(--font-mono);" id="live-selected-model">None</div>
+                                    </div>
+                                    <div>
+                                        <div style="font-size: 0.65rem; font-family: var(--font-mono); color: var(--text-muted); text-transform: uppercase;">Inference Latency</div>
+                                        <div style="font-size: 0.95rem; font-weight: 600; color: var(--text-primary); font-family: var(--font-mono);" id="live-inference-latency">—</div>
+                                    </div>
+                                    <div>
+                                        <div style="font-size: 0.65rem; font-family: var(--font-mono); color: var(--text-muted); text-transform: uppercase;">Analysis Status</div>
+                                        <div style="font-size: 0.95rem; font-weight: 600; color: var(--text-primary); font-family: var(--font-mono);" id="live-analysis-status">IDLE</div>
+                                    </div>
+                                </div>
+
+                                <div class="live-flags-list mt-3">
+                                    <div class="live-flag-item">
+                                        <span class="flag-bullet bg-warning" id="live-flag-bullet"></span>
+                                        <div class="flag-content">
+                                            <div class="flag-title" id="live-alert-title">Threat Monitoring Status</div>
+                                            <div class="flag-sub" id="live-alert-status">Unable to determine voice authenticity. More audio or a supported model is required.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card fraud-prevention-card mt-4">
+                        <div class="card-header">
+                            <div>
+                                <h3 class="card-title">Fraud Prevention</h3>
+                                <p class="card-subtitle">Suggested safeguards · actions below are simulations only</p>
+                            </div>
+                            <span class="badge badge-warning">NO ACTION BACKEND</span>
+                        </div>
+                        <div class="card-body fraud-prevention-body">
+                            <div class="fraud-guidance">
+                                <span class="fraud-icon" aria-hidden="true">!</span>
+                                <div><strong>Pause sensitive changes until identity is confirmed.</strong><p>Use a known callback number, require a second factor, and hold high-value transactions for independent approval.</p></div>
+                            </div>
+                            <div class="fraud-actions">
+                                <button type="button" class="btn btn-outline fraud-simulation-action" data-action="MFA recommendation">Recommend MFA</button>
+                                <button type="button" class="btn btn-outline fraud-simulation-action" data-action="callback verification">Simulate Callback Check</button>
+                                <button type="button" class="btn btn-danger fraud-simulation-action" data-action="transaction hold">Simulate Transaction Hold</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mt-4">
+                        <div class="card-header">
+                            <div>
+                                <h3 class="card-title">Threat Alerts</h3>
+                                <p class="card-subtitle">Only model-backed alerts will appear here.</p>
+                            </div>
+                            <span class="badge badge-blue" id="live-alert-count">0 alerts</span>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>ALERT</th>
+                                        <th>RISK LEVEL</th>
+                                        <th>CREATED</th>
+                                        <th>STATUS</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="live-channels-table">
+                                    <tr><td colspan="4" class="text-muted" id="live-alert-empty-msg">Unable to determine voice authenticity. More audio or a supported model is required.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ==================================================== -->
+                <!-- 4. SPEAKER VERIFICATION (ECAPA-TDNN)                 -->
+                <!-- ==================================================== -->
+                <section id="view-verification" class="view-section">
+                    <div class="section-header">
+                        <div>
+                            <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.35rem;">
+                                <h1 class="section-title" style="margin: 0;">1:1 Biometric Speaker Verification</h1>
+                                <span class="badge badge-success" id="ecapa-status-pill" style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.3rem 0.75rem; font-weight: 600; border-radius: 9999px;">
+                                    <span style="width: 8px; height: 8px; border-radius: 50%; background: #10b981; box-shadow: 0 0 8px #10b981;"></span>
+                                    SpeechBrain ECAPA-TDNN Online
+                                </span>
+                            </div>
+                            <p class="section-desc">Authenticate speaker identity across two recordings using the official SpeechBrain pretrained ECAPA-TDNN model (VoxCeleb). Extracts 192-dimensional embeddings and calculates cosine similarity on CPU.</p>
+                        </div>
+                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                            <span class="badge badge-outline">192-D Embeddings</span>
+                            <span class="badge badge-outline">CPU Inference</span>
+                            <span class="badge badge-outline">16 kHz Mono</span>
+                        </div>
+                    </div>
+
+                    <!-- Speaker Platform Sub-Navigation Tabs -->
+                    <div class="speaker-nav-tabs" style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid rgba(148, 163, 184, 0.15); padding-bottom: 0.75rem; flex-wrap: wrap;">
+                        <button type="button" class="btn btn-sm btn-outline speaker-subtab-btn active" data-subtab="verify" style="padding: 0.5rem 1.1rem; border-radius: 8px; font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; gap: 0.45rem;">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+                            <span>1:1 Voice Verification</span>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline speaker-subtab-btn" data-subtab="enroll" style="padding: 0.5rem 1.1rem; border-radius: 8px; font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; gap: 0.45rem;">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+                            <span>Enroll New Speaker</span>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline speaker-subtab-btn" data-subtab="profiles" style="padding: 0.5rem 1.1rem; border-radius: 8px; font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; gap: 0.45rem;">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                            <span>Registered Voiceprints</span>
+                            <span class="badge badge-info" id="badge-profiles-count" style="margin-left: 0.35rem; font-size: 0.72rem; padding: 0.15rem 0.45rem;">0</span>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline speaker-subtab-btn" data-subtab="history" style="padding: 0.5rem 1.1rem; border-radius: 8px; font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; gap: 0.45rem;">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            <span>Verification History</span>
+                            <span class="badge badge-outline" id="badge-history-count" style="margin-left: 0.35rem; font-size: 0.72rem; padding: 0.15rem 0.45rem;">0</span>
+                        </button>
+                    </div>
+
+                    <!-- ==================================================== -->
+                    <!-- SUB-VIEW 1: 1:1 VOICE VERIFICATION                   -->
+                    <!-- ==================================================== -->
+                    <div id="speaker-subview-verify" class="speaker-subview">
+                        <!-- Reference Input Mode Toggle -->
+                        <div class="card" style="margin-bottom: 1.25rem; padding: 0.85rem 1.25rem; background: rgba(15, 23, 42, 0.5); border: 1px solid rgba(148, 163, 184, 0.15);">
+                            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;">
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <span style="font-size: 0.85rem; font-weight: 600; color: #cbd5e1;">Reference Mode:</span>
+                                    <span style="font-size: 0.8rem; color: #94a3b8;">Choose how baseline identity is verified</span>
+                                </div>
+                                <div style="display: flex; gap: 0.5rem; align-items: center;">
+                                    <button type="button" class="btn btn-sm btn-outline ref-mode-btn active" id="btn-mode-audio" style="font-size: 0.8rem; padding: 0.35rem 0.85rem;">Dual Audio Upload</button>
+                                    <button type="button" class="btn btn-sm btn-outline ref-mode-btn" id="btn-mode-profile" style="font-size: 0.8rem; padding: 0.35rem 0.85rem;">Enrolled Voiceprint Profile</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Dual Audio Upload Inputs -->
+                        <div class="grid-layout-2-col" style="margin-bottom: 1.5rem;">
+                            <!-- Reference Audio / Profile Box -->
+                            <div class="card" style="border-top: 3px solid #3b82f6;">
+                                <div class="card-header">
+                                    <div>
+                                        <h3 class="card-title" id="ecapa-ref-card-title">Reference Audio (Baseline Voiceprint)</h3>
+                                        <p class="card-subtitle" id="ecapa-ref-card-subtitle">Known baseline recording of claimed identity</p>
+                                    </div>
+                                    <span class="badge badge-info" id="ecapa-ref-badge">Reference</span>
+                                </div>
+                                <div class="card-body">
+                                    <!-- Mode A: Dropzone Upload Box -->
+                                    <div id="ref-dropzone-container">
+                                        <div class="file-upload-box ecapa-dropzone" id="ecapa-ref-upload-box" style="cursor: pointer; text-align: center; padding: 2rem 1rem; border: 2px dashed rgba(59, 130, 246, 0.4); border-radius: 12px; background: rgba(15, 23, 42, 0.4); transition: all 0.2s ease;">
+                                            <input type="file" id="ecapa-ref-input" accept="audio/*" class="file-input-hidden" style="display: none;">
+                                            <div class="upload-box-content">
+                                                <svg viewBox="0 0 24 24" width="36" height="36" stroke="#3b82f6" stroke-width="2" fill="none" style="margin: 0 auto 0.75rem;">
+                                                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                                                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                                                    <line x1="12" y1="19" x2="12" y2="23"></line>
+                                                    <line x1="8" y1="23" x2="16" y2="23"></line>
+                                                </svg>
+                                                <div style="font-weight: 600; color: #e2e8f0;" id="ecapa-ref-file-label">Drop reference audio here or browse</div>
+                                                <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 0.25rem;">Supports WAV, MP3, FLAC, OGG (Max 25 MB)</div>
+                                            </div>
+                                        </div>
+                                        <div id="ecapa-ref-file-info" style="display: none; margin-top: 1rem; padding: 0.75rem 1rem; background: rgba(30, 41, 59, 0.6); border-radius: 8px; border: 1px solid rgba(59, 130, 246, 0.3);">
+                                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                                                <span id="ecapa-ref-name" style="font-weight: 600; font-size: 0.9rem; color: #93c5fd; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 70%;"></span>
+                                                <span id="ecapa-ref-size" style="font-size: 0.8rem; color: #94a3b8;"></span>
+                                            </div>
+                                            <audio id="ecapa-ref-player" controls style="width: 100%; height: 32px; outline: none;"></audio>
+                                        </div>
+                                    </div>
+
+                                    <!-- Mode B: Enrolled Profile Dropdown -->
+                                    <div id="ref-profile-select-container" style="display: none;">
+                                        <label for="ecapa-profile-select" style="font-size: 0.85rem; font-weight: 600; color: #cbd5e1; display: block; margin-bottom: 0.5rem;">Select Registered Biometric Profile:</label>
+                                        <select id="ecapa-profile-select" style="width: 100%; padding: 0.75rem 1rem; border-radius: 8px; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(59, 130, 246, 0.4); color: #e2e8f0; font-size: 0.9rem; outline: none;">
+                                            <option value="">-- Choose an Enrolled Speaker --</option>
+                                        </select>
+                                        <div id="ecapa-selected-profile-details" style="display: none; margin-top: 1rem; padding: 0.85rem 1rem; background: rgba(30, 41, 59, 0.6); border-radius: 8px; border: 1px solid rgba(59, 130, 246, 0.3);">
+                                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+                                                <span id="sel-prof-name" style="font-weight: 700; color: #93c5fd; font-size: 0.95rem;"></span>
+                                                <span id="sel-prof-id" style="font-family: monospace; font-size: 0.75rem; background: rgba(59, 130, 246, 0.2); color: #60a5fa; padding: 2px 6px; border-radius: 4px;"></span>
+                                            </div>
+                                            <div style="font-size: 0.8rem; color: #94a3b8;" id="sel-prof-meta"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Comparison Audio Box -->
+                            <div class="card" style="border-top: 3px solid #8b5cf6;">
+                                <div class="card-header">
+                                    <div>
+                                        <h3 class="card-title">Comparison Audio (Probe / Claimed Sample)</h3>
+                                        <p class="card-subtitle">Incoming recording to authenticate against reference</p>
+                                    </div>
+                                    <span class="badge badge-purple" style="background: rgba(139, 92, 246, 0.2); color: #a78bfa;">Comparison</span>
+                                </div>
+                                <div class="card-body">
+                                    <div class="file-upload-box ecapa-dropzone" id="ecapa-cmp-upload-box" style="cursor: pointer; text-align: center; padding: 2rem 1rem; border: 2px dashed rgba(139, 92, 246, 0.4); border-radius: 12px; background: rgba(15, 23, 42, 0.4); transition: all 0.2s ease;">
+                                        <input type="file" id="ecapa-cmp-input" accept="audio/*" class="file-input-hidden" style="display: none;">
+                                        <div class="upload-box-content">
+                                            <svg viewBox="0 0 24 24" width="36" height="36" stroke="#8b5cf6" stroke-width="2" fill="none" style="margin: 0 auto 0.75rem;">
+                                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                                            </svg>
+                                            <div style="font-weight: 600; color: #e2e8f0;" id="ecapa-cmp-file-label">Drop comparison audio here or browse</div>
+                                            <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 0.25rem;">Supports WAV, MP3, FLAC, OGG (Max 25 MB)</div>
+                                        </div>
+                                    </div>
+                                    <div id="ecapa-cmp-file-info" style="display: none; margin-top: 1rem; padding: 0.75rem 1rem; background: rgba(30, 41, 59, 0.6); border-radius: 8px; border: 1px solid rgba(139, 92, 246, 0.3);">
+                                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                                            <span id="ecapa-cmp-name" style="font-weight: 600; font-size: 0.9rem; color: #c4b5fd; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 70%;"></span>
+                                            <span id="ecapa-cmp-size" style="font-size: 0.8rem; color: #94a3b8;"></span>
+                                        </div>
+                                        <audio id="ecapa-cmp-player" controls style="width: 100%; height: 32px; outline: none;"></audio>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Configuration & Execution Control Card -->
+                        <div class="card" style="margin-bottom: 1.5rem;">
+                            <div class="card-header">
+                                <div>
+                                    <h3 class="card-title">Verification Threshold & Execution Parameters</h3>
+                                    <p class="card-subtitle">Adjust cosine similarity decision boundary</p>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div style="display: grid; grid-template-columns: 1fr auto; gap: 1.5rem; align-items: center;">
+                                    <div>
+                                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                                            <label for="ecapa-threshold-slider" style="font-weight: 600; font-size: 0.95rem; color: #e2e8f0;">Cosine Similarity Decision Threshold:</label>
+                                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                                <input type="number" id="ecapa-threshold-input" min="-1.0" max="1.0" step="0.01" value="0.25" style="width: 80px; padding: 0.25rem 0.5rem; text-align: center; border-radius: 6px; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(148, 163, 184, 0.3); color: #38bdf8; font-weight: 700; font-family: monospace;">
+                                            </div>
+                                        </div>
+                                        <input type="range" id="ecapa-threshold-slider" min="-1.0" max="1.0" step="0.01" value="0.25" style="width: 100%; accent-color: #38bdf8; cursor: pointer;">
+                                        <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: #64748b; margin-top: 0.25rem;">
+                                            <span>-1.0 (Opposite)</span>
+                                            <span>0.0 (Orthogonal)</span>
+                                            <span style="color: #38bdf8; font-weight: 600;">Recommended: 0.25 (VoxCeleb)</span>
+                                            <span>+1.0 (Identical)</span>
+                                        </div>
+                                        <div style="display: flex; gap: 0.5rem; margin-top: 0.75rem; align-items: center; flex-wrap: wrap;">
+                                            <span style="font-size: 0.8rem; color: #94a3b8;">Preset Profiles:</span>
+                                            <button type="button" class="btn btn-sm btn-outline ecapa-preset-btn" data-preset="0.40" style="padding: 0.2rem 0.6rem; font-size: 0.75rem;">Strict (0.40)</button>
+                                            <button type="button" class="btn btn-sm btn-outline ecapa-preset-btn active" data-preset="0.25" style="padding: 0.2rem 0.6rem; font-size: 0.75rem;">Recommended (0.25)</button>
+                                            <button type="button" class="btn btn-sm btn-outline ecapa-preset-btn" data-preset="0.10" style="padding: 0.2rem 0.6rem; font-size: 0.75rem;">Permissive (0.10)</button>
+                                        </div>
+                                    </div>
+                                    <div style="min-width: 220px;">
+                                        <button type="button" class="btn btn-primary btn-block" id="btn-ecapa-verify" style="padding: 0.85rem 1.5rem; font-weight: 600; font-size: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.25);">
+                                            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none">
+                                                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                                                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                                                <line x1="12" y1="19" x2="12" y2="23"></line>
+                                                <line x1="8" y1="23" x2="16" y2="23"></line>
+                                            </svg>
+                                            <span id="btn-ecapa-verify-text">Verify Voiceprints</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Error Message Banner -->
+                                <div id="ecapa-error-alert" style="display: none; margin-top: 1rem; padding: 0.75rem 1rem; background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 8px; color: #fca5a5; font-size: 0.9rem;">
+                                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                                        <span id="ecapa-error-text">An error occurred during verification.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic Results Box -->
+                        <div id="ecapa-results-card" class="card" style="display: none; margin-bottom: 1.5rem; border-top: 3px solid #10b981; transition: all 0.3s ease;">
+                            <div class="card-header">
+                                <div>
+                                    <h3 class="card-title">Biometric Verification Verdict</h3>
+                                    <p class="card-subtitle" id="ecapa-results-subtitle">ECAPA-TDNN 192-dimensional latent embedding comparison</p>
+                                </div>
+                                <span class="badge" id="ecapa-verdict-pill">VERIFIED</span>
+                            </div>
+                            <div class="card-body">
+                                <!-- Large Verdict Banner -->
+                                <div id="ecapa-verdict-banner" style="padding: 1.25rem 1.5rem; border-radius: 12px; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+                                    <div style="display: flex; align-items: center; gap: 1rem;">
+                                        <div id="ecapa-verdict-icon" style="width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center;"></div>
+                                        <div>
+                                            <div id="ecapa-verdict-title" style="font-size: 1.35rem; font-weight: 700; letter-spacing: 0.02em;"></div>
+                                            <div id="ecapa-verdict-desc" style="font-size: 0.85rem; color: #94a3b8; margin-top: 0.15rem;"></div>
+                                        </div>
+                                    </div>
+                                    <div style="text-align: right;">
+                                        <div style="font-size: 0.8rem; color: #94a3b8;">Processing Latency</div>
+                                        <div id="ecapa-latency-val" style="font-size: 1.15rem; font-weight: 700; font-family: monospace; color: #38bdf8;">— ms</div>
+                                    </div>
+                                </div>
+
+                                <!-- 4 Key Metric Cards -->
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+                                    <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(148, 163, 184, 0.15); border-radius: 10px; padding: 1rem;">
+                                        <div style="font-size: 0.8rem; color: #94a3b8; text-transform: uppercase; font-weight: 600;">Cosine Similarity</div>
+                                        <div id="ecapa-sim-value" style="font-size: 1.8rem; font-weight: 800; font-family: monospace; color: #38bdf8; margin: 0.35rem 0;">—</div>
+                                        <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: #64748b;">
+                                            <span>Threshold: <strong id="ecapa-metric-threshold" style="color: #cbd5e1;">0.25</strong></span>
+                                            <span id="ecapa-sim-gap" style="font-weight: 600;"></span>
+                                        </div>
+                                        <div style="position: relative; height: 6px; background: rgba(148, 163, 184, 0.2); border-radius: 3px; margin-top: 0.5rem; overflow: hidden;">
+                                            <div id="ecapa-sim-bar" style="height: 100%; width: 50%; background: #38bdf8; transition: width 0.4s ease;"></div>
+                                        </div>
+                                    </div>
+
+                                    <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(148, 163, 184, 0.15); border-radius: 10px; padding: 1rem;">
+                                        <div style="font-size: 0.8rem; color: #94a3b8; text-transform: uppercase; font-weight: 600;">Verification Status</div>
+                                        <div id="ecapa-status-value" style="font-size: 1.3rem; font-weight: 700; margin: 0.5rem 0;">—</div>
+                                        <div style="font-size: 0.75rem; color: #94a3b8;">1:1 Biometric Match</div>
+                                    </div>
+
+                                    <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(148, 163, 184, 0.15); border-radius: 10px; padding: 1rem;">
+                                        <div style="font-size: 0.8rem; color: #94a3b8; text-transform: uppercase; font-weight: 600;">Latent Vector Space</div>
+                                        <div style="font-size: 1.3rem; font-weight: 700; color: #a78bfa; margin: 0.5rem 0;">192 Dimensions</div>
+                                        <div style="font-size: 0.75rem; color: #94a3b8;">L2 Unit Hypersphere</div>
+                                    </div>
+
+                                    <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(148, 163, 184, 0.15); border-radius: 10px; padding: 1rem;">
+                                        <div style="font-size: 0.8rem; color: #94a3b8; text-transform: uppercase; font-weight: 600;">Neural Backbone</div>
+                                        <div style="font-size: 1.15rem; font-weight: 700; color: #34d399; margin: 0.5rem 0;">ECAPA-TDNN</div>
+                                        <div style="font-size: 0.75rem; color: #94a3b8;">Pretrained on VoxCeleb</div>
+                                    </div>
+                                </div>
+
+                                <!-- Audio Quality Warnings Box -->
+                                <div id="ecapa-warnings-container" style="display: none; margin-bottom: 1.5rem; padding: 1rem; border-radius: 10px; background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3);">
+                                    <div style="display: flex; align-items: center; gap: 0.5rem; color: #fbbf24; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;">
+                                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                                        <span>Acoustic Quality Warnings</span>
+                                    </div>
+                                    <ul id="ecapa-warnings-list" style="margin: 0; padding-left: 1.5rem; color: #fde68a; font-size: 0.85rem;"></ul>
+                                </div>
+
+                                <!-- Side-by-side Audio Comparison Table -->
+                                <div style="background: rgba(15, 23, 42, 0.4); border-radius: 10px; padding: 1rem; border: 1px solid rgba(148, 163, 184, 0.1); margin-bottom: 1.5rem;">
+                                    <div style="font-weight: 600; color: #e2e8f0; font-size: 0.9rem; margin-bottom: 0.75rem;">Audio Characteristics Comparison</div>
+                                    <div class="table-responsive">
+                                        <table class="data-table" style="font-size: 0.85rem;">
+                                            <thead>
+                                                <tr>
+                                                    <th>ATTRIBUTE</th>
+                                                    <th>REFERENCE TARGET</th>
+                                                    <th>COMPARISON AUDIO</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Identity / File</td>
+                                                    <td id="ecapa-tbl-ref-name" class="mono-cell">—</td>
+                                                    <td id="ecapa-tbl-cmp-name" class="mono-cell">—</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Duration</td>
+                                                    <td id="ecapa-tbl-ref-duration" class="mono-cell">—</td>
+                                                    <td id="ecapa-tbl-cmp-duration" class="mono-cell">—</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Sample Rate</td>
+                                                    <td id="ecapa-tbl-ref-sr" class="mono-cell">16,000 Hz (Resampled)</td>
+                                                    <td id="ecapa-tbl-cmp-sr" class="mono-cell">16,000 Hz (Resampled)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Channels</td>
+                                                    <td id="ecapa-tbl-ref-channels" class="mono-cell">1 (Mono downmixed)</td>
+                                                    <td id="ecapa-tbl-cmp-channels" class="mono-cell">1 (Mono downmixed)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>RMS Energy</td>
+                                                    <td id="ecapa-tbl-ref-rms" class="mono-cell">—</td>
+                                                    <td id="ecapa-tbl-cmp-rms" class="mono-cell">—</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <!-- Calibration & Scientific Disclosure Note -->
+                                <div style="padding: 0.85rem 1rem; border-radius: 8px; background: rgba(30, 41, 59, 0.5); border-left: 3px solid #38bdf8; font-size: 0.8rem; color: #94a3b8;">
+                                    <strong style="color: #cbd5e1;">Metric Interpretation Note:</strong>
+                                    <span id="ecapa-interpretation-note">Cosine similarity reflects directional alignment in the 192-dimensional latent speaker embedding space. It is not a calibrated probability. Thresholds must be chosen based on target security false-acceptance requirements.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ==================================================== -->
+                    <!-- SUB-VIEW 2: ENROLL NEW SPEAKER                       -->
+                    <!-- ==================================================== -->
+                    <div id="speaker-subview-enroll" class="speaker-subview" style="display: none;">
+                        <div class="card" style="border-top: 3px solid #10b981; margin-bottom: 1.5rem;">
+                            <div class="card-header">
+                                <div>
+                                    <h3 class="card-title">Enroll Speaker Biometric Voiceprint</h3>
+                                    <p class="card-subtitle">Extract and encrypt a 192-dimensional ECAPA-TDNN acoustic voiceprint. Raw audio is discarded after enrollment.</p>
+                                </div>
+                                <span class="badge badge-success">GDPR &amp; Privacy Mandate</span>
+                            </div>
+                            <div class="card-body">
+                                <form id="form-enroll-speaker">
+                                    <div class="grid-layout-2-col" style="gap: 1.25rem; margin-bottom: 1.25rem;">
+                                        <div>
+                                            <label for="enroll-speaker-name" style="display: block; font-size: 0.85rem; font-weight: 600; color: #cbd5e1; margin-bottom: 0.4rem;">Speaker Full Name *</label>
+                                            <input type="text" id="enroll-speaker-name" class="form-control" placeholder="e.g. Dr. Alexander Hayes" required maxlength="100" style="width: 100%; padding: 0.75rem 1rem; border-radius: 8px; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(148, 163, 184, 0.25); color: #f8fafc;">
+                                        </div>
+                                        <div>
+                                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+                                                <label for="enroll-speaker-id" style="font-size: 0.85rem; font-weight: 600; color: #cbd5e1;">Unique Speaker ID (Optional)</label>
+                                                <button type="button" id="btn-auto-gen-id" style="background: none; border: none; color: #38bdf8; font-size: 0.75rem; cursor: pointer; text-decoration: underline;">Auto-Generate</button>
+                                            </div>
+                                            <input type="text" id="enroll-speaker-id" class="form-control" placeholder="e.g. SPK-HAYES-01 (or leave blank to auto-generate)" maxlength="64" style="width: 100%; padding: 0.75rem 1rem; border-radius: 8px; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(148, 163, 184, 0.25); color: #f8fafc; font-family: monospace;">
+                                        </div>
+                                        <div>
+                                            <label for="enroll-department" style="display: block; font-size: 0.85rem; font-weight: 600; color: #cbd5e1; margin-bottom: 0.4rem;">Department / Organization</label>
+                                            <input type="text" id="enroll-department" class="form-control" placeholder="e.g. Executive Treasury &amp; Finance" maxlength="100" style="width: 100%; padding: 0.75rem 1rem; border-radius: 8px; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(148, 163, 184, 0.25); color: #f8fafc;">
+                                        </div>
+                                        <div>
+                                            <label for="enroll-clearance" style="display: block; font-size: 0.85rem; font-weight: 600; color: #cbd5e1; margin-bottom: 0.4rem;">Security Clearance Tier</label>
+                                            <select id="enroll-clearance" style="width: 100%; padding: 0.75rem 1rem; border-radius: 8px; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(148, 163, 184, 0.25); color: #f8fafc;">
+                                                <option value="Tier-1 (Standard)">Tier-1 (Standard Call Authorization)</option>
+                                                <option value="Tier-2 (Elevated)">Tier-2 (High-Value Transaction Clearance)</option>
+                                                <option value="Tier-3 (Executive)" selected>Tier-3 (Executive Impersonation Defense)</option>
+                                                <option value="Tier-4 (Critical Infrastructure)">Tier-4 (Critical Infrastructure Vault)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- Enrollment Reference Audio Upload Box -->
+                                    <div style="margin-bottom: 1.5rem;">
+                                        <label style="display: block; font-size: 0.85rem; font-weight: 600; color: #cbd5e1; margin-bottom: 0.5rem;">Reference Biometric Audio Sample (Minimum 1.5s recommended) *</label>
+                                        <div class="file-upload-box" id="enroll-dropzone" style="cursor: pointer; text-align: center; padding: 2.5rem 1rem; border: 2px dashed rgba(16, 185, 129, 0.4); border-radius: 12px; background: rgba(15, 23, 42, 0.4); transition: all 0.2s ease;">
+                                            <input type="file" id="enroll-file-input" accept="audio/*" class="file-input-hidden" style="display: none;">
+                                            <div class="upload-box-content">
+                                                <svg viewBox="0 0 24 24" width="40" height="40" stroke="#10b981" stroke-width="2" fill="none" style="margin: 0 auto 0.75rem;">
+                                                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                                                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                                                    <line x1="12" y1="19" x2="12" y2="23"></line>
+                                                    <line x1="8" y1="23" x2="16" y2="23"></line>
+                                                </svg>
+                                                <div style="font-weight: 600; color: #e2e8f0; font-size: 1rem;" id="enroll-file-label">Drop baseline voice recording here or browse</div>
+                                                <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 0.25rem;">Supports WAV, MP3, FLAC, OGG (Max 25 MB) &bull; Minimum 1600 PCM samples</div>
+                                            </div>
+                                        </div>
+                                        <div id="enroll-file-info" style="display: none; margin-top: 1rem; padding: 0.75rem 1rem; background: rgba(30, 41, 59, 0.6); border-radius: 8px; border: 1px solid rgba(16, 185, 129, 0.3);">
+                                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                                                <span id="enroll-file-name" style="font-weight: 600; font-size: 0.9rem; color: #6ee7b7; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 70%;"></span>
+                                                <span id="enroll-file-size" style="font-size: 0.8rem; color: #94a3b8;"></span>
+                                            </div>
+                                            <audio id="enroll-audio-player" controls style="width: 100%; height: 32px; outline: none;"></audio>
+                                        </div>
+                                    </div>
+
+                                    <!-- Mandatory Consent Checkbox -->
+                                    <div style="margin-bottom: 1.5rem; padding: 1rem 1.25rem; background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 10px;">
+                                        <label style="display: flex; align-items: flex-start; gap: 0.75rem; cursor: pointer; color: #e2e8f0; font-size: 0.85rem; line-height: 1.45;">
+                                            <input type="checkbox" id="enroll-consent-checkbox" required style="width: 18px; height: 18px; margin-top: 2px; accent-color: #10b981; cursor: pointer;">
+                                            <span>
+                                                <strong style="color: #6ee7b7;">Explicit Biometric Consent Confirmation:</strong> I certify that the speaker has provided informed consent for acoustic feature extraction and zero-trust biometric verification. Extracted embeddings will be encrypted, and original raw recordings will not be retained permanently.
+                                            </span>
+                                        </label>
+                                    </div>
+
+                                    <!-- Feedback Alert -->
+                                    <div id="enroll-feedback-alert" style="display: none; margin-bottom: 1.25rem; padding: 0.85rem 1.25rem; border-radius: 8px; font-size: 0.9rem;"></div>
+
+                                    <!-- Action Button -->
+                                    <button type="submit" class="btn btn-primary" id="btn-submit-enroll" style="padding: 0.85rem 2rem; font-size: 1rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; background: linear-gradient(135deg, #10b981, #059669); border: none; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.25);">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+                                        <span id="btn-submit-enroll-text">Extract 192-D Voiceprint &amp; Enroll</span>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ==================================================== -->
+                    <!-- SUB-VIEW 3: REGISTERED VOICEPRINTS MANAGEMENT        -->
+                    <!-- ==================================================== -->
+                    <div id="speaker-subview-profiles" class="speaker-subview" style="display: none;">
+                        <!-- Controls Bar -->
+                        <div class="card" style="margin-bottom: 1.5rem; padding: 1rem 1.25rem; background: rgba(15, 23, 42, 0.6);">
+                            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                                <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; flex: 1; max-width: 600px;">
+                                    <input type="text" id="profiles-search-input" placeholder="Search by name, Speaker ID, or department..." style="flex: 1; min-width: 200px; padding: 0.6rem 1rem; border-radius: 8px; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(148, 163, 184, 0.2); color: #f8fafc; font-size: 0.85rem;">
+                                    <select id="profiles-status-filter" style="padding: 0.6rem 1rem; border-radius: 8px; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(148, 163, 184, 0.2); color: #f8fafc; font-size: 0.85rem;">
+                                        <option value="">All Statuses</option>
+                                        <option value="ACTIVE" selected>Active Voiceprints</option>
+                                        <option value="INACTIVE">Inactive</option>
+                                    </select>
+                                </div>
+                                <div style="display: flex; gap: 0.5rem;">
+                                    <button type="button" class="btn btn-sm btn-outline" id="btn-refresh-profiles" style="padding: 0.5rem 0.85rem; font-size: 0.8rem; display: flex; align-items: center; gap: 0.4rem;">
+                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><path d="M23 4v6h-6"></path><path d="M1 20v-6h6"></path><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                                        <span>Refresh</span>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-primary" id="btn-goto-enroll" style="padding: 0.5rem 1rem; font-size: 0.8rem; display: flex; align-items: center; gap: 0.4rem;">
+                                        <span>+ Enroll New Speaker</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Feedback Notification Banner -->
+                        <div id="profiles-feedback-banner" style="display: none; margin-bottom: 1.25rem; padding: 0.85rem 1.25rem; border-radius: 8px; font-size: 0.9rem;"></div>
+
+                        <!-- Enrolled Voiceprint Cards Grid -->
+                        <div id="profiles-cards-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.25rem;">
+                            <!-- Injected dynamically via JS -->
+                        </div>
+
+                        <!-- Empty State Container -->
+                        <div id="profiles-empty-state" style="display: none; text-align: center; padding: 3rem 1rem; background: rgba(15, 23, 42, 0.4); border-radius: 12px; border: 1px dashed rgba(148, 163, 184, 0.2);">
+                            <svg viewBox="0 0 24 24" width="48" height="48" stroke="#64748b" stroke-width="1.5" fill="none" style="margin: 0 auto 1rem;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                            <div style="font-weight: 600; font-size: 1.1rem; color: #cbd5e1; margin-bottom: 0.35rem;">No Biometric Voiceprints Found</div>
+                            <p style="font-size: 0.85rem; color: #94a3b8; max-width: 420px; margin: 0 auto 1.25rem;">You haven't enrolled any speaker voiceprints yet. Enroll an authorized identity to enable 1-click biometric verification.</p>
+                            <button type="button" class="btn btn-primary" id="btn-empty-enroll">Enroll First Speaker</button>
+                        </div>
+                    </div>
+
+                    <!-- ==================================================== -->
+                    <!-- SUB-VIEW 4: VERIFICATION HISTORY & AUDIT LOG         -->
+                    <!-- ==================================================== -->
+                    <div id="speaker-subview-history" class="speaker-subview" style="display: none;">
+                        <!-- Statistics Pills Strip -->
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+                            <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(148, 163, 184, 0.15); border-radius: 10px; padding: 0.85rem 1rem;">
+                                <div style="font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; font-weight: 600;">Total Verifications</div>
+                                <div id="hist-stat-total" style="font-size: 1.6rem; font-weight: 800; color: #f8fafc; font-family: monospace; margin: 0.2rem 0;">0</div>
+                                <span style="font-size: 0.72rem; color: #64748b;">All session events</span>
+                            </div>
+                            <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 10px; padding: 0.85rem 1rem;">
+                                <div style="font-size: 0.75rem; color: #6ee7b7; text-transform: uppercase; font-weight: 600;">Same Speaker (Matched)</div>
+                                <div id="hist-stat-matched" style="font-size: 1.6rem; font-weight: 800; color: #10b981; font-family: monospace; margin: 0.2rem 0;">0</div>
+                                <span style="font-size: 0.72rem; color: #6ee7b7;">Authentic identity verified</span>
+                            </div>
+                            <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: 10px; padding: 0.85rem 1rem;">
+                                <div style="font-size: 0.75rem; color: #fca5a5; text-transform: uppercase; font-weight: 600;">Different Speaker (Mismatch)</div>
+                                <div id="hist-stat-mismatched" style="font-size: 1.6rem; font-weight: 800; color: #ef4444; font-family: monospace; margin: 0.2rem 0;">0</div>
+                                <span style="font-size: 0.72rem; color: #fca5a5;">Voice mismatch detected</span>
+                            </div>
+                            <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 10px; padding: 0.85rem 1rem;">
+                                <div style="font-size: 0.75rem; color: #fde68a; text-transform: uppercase; font-weight: 600;">Inconclusive</div>
+                                <div id="hist-stat-inconclusive" style="font-size: 1.6rem; font-weight: 800; color: #f59e0b; font-family: monospace; margin: 0.2rem 0;">0</div>
+                                <span style="font-size: 0.72rem; color: #fde68a;">Borderline / degraded audio</span>
+                            </div>
+                            <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 10px; padding: 0.85rem 1rem;">
+                                <div style="font-size: 0.75rem; color: #7dd3fc; text-transform: uppercase; font-weight: 600;">Avg Similarity</div>
+                                <div id="hist-stat-avg-sim" style="font-size: 1.6rem; font-weight: 800; color: #38bdf8; font-family: monospace; margin: 0.2rem 0;">0.00</div>
+                                <span style="font-size: 0.72rem; color: #7dd3fc;">Cosine alignment</span>
+                            </div>
+                        </div>
+
+                        <!-- Filter & Action Controls -->
+                        <div class="card" style="margin-bottom: 1.5rem; padding: 1rem 1.25rem; background: rgba(15, 23, 42, 0.6);">
+                            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+                                <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; flex: 1;">
+                                    <input type="text" id="spk-hist-search" placeholder="Search by file name or speaker ID..." style="min-width: 220px; padding: 0.55rem 0.85rem; border-radius: 8px; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(148, 163, 184, 0.2); color: #f8fafc; font-size: 0.85rem;">
+                                    <select id="spk-hist-verdict" style="padding: 0.55rem 0.85rem; border-radius: 8px; background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(148, 163, 184, 0.2); color: #f8fafc; font-size: 0.85rem;">
+                                        <option value="">All Verdicts</option>
+                                        <option value="SAME_SPEAKER">SAME_SPEAKER (Matched)</option>
+                                        <option value="DIFFERENT_SPEAKER">DIFFERENT_SPEAKER (Mismatch)</option>
+                                        <option value="INCONCLUSIVE">INCONCLUSIVE (Borderline)</option>
+                                    </select>
+                                </div>
+                                <div style="display: flex; gap: 0.5rem; align-items: center;">
+                                    <button type="button" class="btn btn-sm btn-outline" id="btn-spk-export-csv" style="padding: 0.5rem 0.85rem; font-size: 0.8rem; display: flex; align-items: center; gap: 0.4rem; color: #38bdf8; border-color: rgba(56, 189, 248, 0.4);">
+                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                        <span>Export CSV</span>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-outline" id="btn-spk-clear-hist" style="padding: 0.5rem 0.85rem; font-size: 0.8rem; display: flex; align-items: center; gap: 0.4rem; color: #f87171; border-color: rgba(239, 68, 68, 0.3);">
+                                        <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                                        <span>Clear History</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Verification History Table -->
+                        <div class="card">
+                            <div class="table-responsive">
+                                <table class="data-table" style="font-size: 0.85rem;">
+                                    <thead>
+                                        <tr>
+                                            <th>TIMESTAMP (UTC)</th>
+                                            <th>REFERENCE TARGET</th>
+                                            <th>COMPARISON PROBE</th>
+                                            <th>SIMILARITY</th>
+                                            <th>VERDICT</th>
+                                            <th>THRESHOLD</th>
+                                            <th>LATENCY</th>
+                                            <th>ACTION</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="spk-history-table-body">
+                                        <!-- Injected via JS -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id="spk-history-empty" style="display: none; text-align: center; padding: 2.5rem; color: #94a3b8; font-size: 0.9rem;">
+                                No speaker verification history records found for current filters.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ==================================================== -->
+                <!-- 4B. DETECTION HISTORY (SEARCHABLE & FILTERABLE)      -->
+                <!-- ==================================================== -->
+                <section id="view-history" class="view-section">
+                    <div class="section-header">
+                        <div>
+                            <h1 class="section-title">Forensic Detection History</h1>
+                            <p class="section-desc">Review voice analyses recorded for your account, with results and risk levels grounded in stored model output.</p>
+                        </div>
+                        <button class="btn btn-primary btn-sm" id="btn-export-history-csv">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            <span>Export History (CSV)</span>
+                        </button>
+                    </div>
+
+                    <div class="metrics-grid history-stats-grid" id="history-stats" aria-busy="true">
+                        <article class="metric-card">
+                            <div class="metric-card-top">
+                                <span class="metric-title">TOTAL AUDIO SCANS</span>
+                                <span class="metric-icon-wrap icon-blue" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none">
+                                        <path d="M3 12h4l3-7 4 14 3-7h4"></path>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="metric-card-body">
+                                <div class="metric-number" id="history-total-scans">—</div>
+                                <div class="metric-subtext">All account analyses</div>
+                            </div>
+                        </article>
+                        <article class="metric-card">
+                            <div class="metric-card-top">
+                                <span class="metric-title">GENUINE VOICES</span>
+                                <span class="metric-icon-wrap icon-green" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                        <polyline points="9 12 11 14 15 10"></polyline>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="metric-card-body">
+                                <div class="metric-number" id="history-genuine-voices">—</div>
+                                <div class="metric-subtext">Model-confirmed authentic</div>
+                            </div>
+                        </article>
+                        <article class="metric-card">
+                            <div class="metric-card-top">
+                                <span class="metric-title">AI GENERATED VOICES</span>
+                                <span class="metric-icon-wrap icon-red" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none">
+                                        <polygon points="12 2 2 22 22 22 12 2"></polygon>
+                                        <line x1="12" y1="9" x2="12" y2="13"></line>
+                                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="metric-card-body">
+                                <div class="metric-number" id="history-ai-voices">—</div>
+                                <div class="metric-subtext">Model-confirmed synthetic</div>
+                            </div>
+                        </article>
+                        <article class="metric-card">
+                            <div class="metric-card-top">
+                                <span class="metric-title">THREATS DETECTED</span>
+                                <span class="metric-icon-wrap icon-amber" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="metric-card-body">
+                                <div class="metric-number" id="history-threats">—</div>
+                                <div class="metric-subtext">Stored threat alerts</div>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="card history-filter-card mb-4">
+                        <div class="card-body history-filter-grid">
+                            <div class="history-filter-field">
+                                <label for="history-search-input">Search audio filename</label>
+                                <input type="search" id="history-search-input" class="form-control" placeholder="Search filenames">
+                            </div>
+                            <div class="history-filter-field">
+                                <label for="history-date-filter">Analysis date</label>
+                                <input type="date" id="history-date-filter" class="form-control">
+                            </div>
+                            <div class="history-filter-field">
+                                <label for="history-result-filter">Detection result</label>
+                                <select id="history-result-filter" class="form-control">
+                                    <option value="ALL">All results</option>
+                                    <option value="AUTHENTIC">Genuine voice</option>
+                                    <option value="SYNTHETIC">AI generated</option>
+                                    <option value="INCONCLUSIVE">Inconclusive / unassessed</option>
+                                    <option value="PENDING">Processing</option>
+                                    <option value="FAILED">Failed</option>
+                                </select>
+                            </div>
+                            <div class="history-filter-field">
+                                <label for="history-risk-filter">Risk level</label>
+                                <select id="history-risk-filter" class="form-control">
+                                    <option value="ALL">All risk levels</option>
+                                    <option value="CRITICAL">Critical</option>
+                                    <option value="HIGH">High</option>
+                                    <option value="MEDIUM">Medium</option>
+                                    <option value="LOW">Low</option>
+                                    <option value="UNASSESSED">Unassessed</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="history-feedback" id="history-feedback" role="status" aria-live="polite"></p>
+
+                    <div class="card history-table-card">
+                        <div class="card-header history-table-header">
+                            <div>
+                                <h3 class="card-title">Detection Records</h3>
+                                <p class="card-subtitle" id="history-record-summary">Loading your account history…</p>
+                            </div>
+                            <button type="button" class="btn btn-outline btn-sm" id="history-retry-btn" hidden>Retry</button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table history-table">
+                                <thead>
+                                    <tr>
+                                        <th>AUDIO FILE</th>
+                                        <th>ANALYSIS DATE</th>
+                                        <th>DETECTION RESULT</th>
+                                        <th>CONFIDENCE SCORE</th>
+                                        <th>RISK LEVEL</th>
+                                        <th>ACTIONS</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="history-table-tbody">
+                                    <tr>
+                                        <td colspan="6">
+                                            <div class="history-state" role="status">Loading detection history…</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <dialog class="history-detail-dialog" id="history-detail-dialog" aria-labelledby="history-detail-title">
+                        <div class="history-detail-header">
+                            <div>
+                                <span class="metric-title">ACCOUNT ANALYSIS RECORD</span>
+                                <h2 id="history-detail-title">Detection Details</h2>
+                            </div>
+                            <button type="button" class="modal-close-btn" id="history-detail-close" aria-label="Close details">&times;</button>
+                        </div>
+                        <div class="history-detail-body" id="history-detail-body" aria-live="polite"></div>
+                    </dialog>
+                </section>
+
+                <!-- ==================================================== -->
+                <!-- 5. THREAT INTELLIGENCE & REPORTS                     -->
+                <!-- ==================================================== -->
+                <section id="view-threat-intel" class="view-section">
+                    <div class="section-header">
+                        <div>
+                            <h1 class="section-title">Acoustic Threat Intelligence & Incident History</h1>
+                            <p class="section-desc">Illustrative sample incidents for interface review. This page is not connected to a threat feed or response system.</p>
+                        </div>
+                        <div class="workspace-scene" data-scene="radar" role="img" aria-label="Decorative threat intelligence radar; no live threat data"><span class="scene-caption">VISUAL ONLY</span></div>
+                        <button class="btn btn-outline btn-sm" id="btn-export-threats">
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>Export Account Report</span>
+            </button>
+                    </div>
+
+                    <!-- Threat Filter Controls -->
+                    <div class="card mb-4">
+                        <div class="card-body p-3">
+                            <div class="filter-toolbar">
+                                <div class="search-box">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                  </svg>
+                                    <input type="text" id="threat-search-input" class="search-input" placeholder="Search by Call ID, Inbound Number, Vector, or Department...">
+                                </div>
+
+                                <div class="filter-pills" id="threat-filter-pills">
+                                    <button type="button" class="filter-pill active" data-filter="all">All Incidents</button>
+                                    <button type="button" class="filter-pill" data-filter="Critical">Critical</button>
+                                    <button type="button" class="filter-pill" data-filter="High">High Risk</button>
+                                    <button type="button" class="filter-pill" data-filter="Medium">Medium Risk</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Suspicious Calls & Alerts Table -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div>
+                                <h3 class="card-title">Intercepted Exploits & Suspicious Calls</h3>
+                                <p class="card-subtitle" id="threat-table-subtitle">Sample dataset · no live threat feed connected</p>
+                            </div>
+                            <span class="badge badge-danger" id="threat-count-badge">8 Incidents Logged</span>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>INCIDENT ID</th>
+                                        <th>TIMESTAMP</th>
+                                        <th>CALLER / ORIGIN</th>
+                                        <th>TARGETED VICTIM</th>
+                                        <th>DETECTED VECTOR</th>
+                                        <th>RISK LEVEL</th>
+                                        <th>ACOUSTIC CONFIDENCE</th>
+                                        <th>ENFORCEMENT</th>
+                                        <th>FORENSICS</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="threat-intelligence-table">
+                                    <!-- Populated dynamically via JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Threat Architecture Breakdown Cards -->
+                    <div class="grid-layout-3-col mt-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title text-danger">Voice Cloning (Zero-Shot)</h4>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-desc">Attackers train 3-second audio clips scraped from public keynote talks to impersonate C-level executives in financial transactions.</p>
+                                <div class="vector-stat-row">
+                                    <span>Mitigation outcome:</span>
+                                    <strong class="text-muted">Not connected</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title text-warning">Real-Time Conversational AI</h4>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-desc">Interactive LLM-driven speech agents attempting social engineering against IT helpdesk for password resets.</p>
+                                <div class="vector-stat-row">
+                                    <span>Mitigation outcome:</span>
+                                    <strong class="text-muted">Not connected</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title text-info">Acoustic Splicing & Replay</h4>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-desc">Snippets of authorized words ("Yes", "Confirm", "Approved") played back into banking IVR systems to bypass voice pins.</p>
+                                <div class="vector-stat-row">
+                                    <span>Mitigation outcome:</span>
+                                    <strong class="text-muted">Not connected</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ==================================================== -->
+                <section id="view-fraud-prevention" class="view-section">
+                    <div class="section-header">
+                        <div>
+                            <h1 class="section-title">Fraud Prevention Workflows</h1>
+                            <p class="section-desc">Response-planning previews only. No transactions, callbacks or MFA challenges are connected.</p>
+                        </div>
+                        <div class="workspace-scene" data-scene="shield" role="img" aria-label="Decorative fraud-prevention shield; no risk decision is connected"><span class="scene-caption">VISUAL ONLY</span></div>
+                        <span class="badge badge-warning">WORKFLOW DEMO · NO ACTIONS EXECUTED</span>
+                    </div>
+                    <div class="fraud-risk-banner card">
+                        <div class="fraud-risk-mark" aria-hidden="true">!</div>
+                        <div>
+                            <span class="form-label">CURRENT ASSESSMENT</span>
+                            <h2>Risk engine unavailable</h2>
+                            <p>This workspace has no transaction or voice risk service. No live risk score can be displayed.</p>
+                        </div>
+                        <span class="badge badge-warning">NO LIVE SCORE</span>
+                    </div>
+                    <div class="grid-layout-2-col mt-4">
+                        <article class="card">
+                            <div class="card-header"><h3 class="card-title">Callback verification</h3><span class="badge badge-info">PREVIEW</span></div>
+                            <div class="card-body">
+                                <p class="card-desc">A human operator should call a previously verified number from an independent directory—not a number provided in a suspicious request.</p>
+                                <ol class="workflow-steps"><li>Pause the requested transaction.</li><li>Find the contact in a trusted directory.</li><li>Confirm intent using a second channel.</li></ol>
+                                <button class="btn btn-outline" id="btn-callback-preview" type="button">Preview callback checklist</button>
+                                <p class="workflow-feedback" id="callback-feedback" role="status" hidden></p>
+                            </div>
+                        </article>
+                        <article class="card">
+                            <div class="card-header"><h3 class="card-title">Step-up MFA</h3><span class="badge badge-info">PREVIEW</span></div>
+                            <div class="card-body">
+                                <p class="card-desc">Use a phishing-resistant factor or an independently initiated approval. This demo cannot send or validate a challenge.</p>
+                                <div class="security-recommendation"><strong>Recommended:</strong> hardware security key or passkey, confirmed in the trusted application.</div>
+                                <button class="btn btn-outline" id="btn-mfa-preview" type="button">Show MFA guidance</button>
+                                <p class="workflow-feedback" id="mfa-feedback" role="status" hidden></p>
+                            </div>
+                        </article>
+                        <article class="card transaction-hold-card">
+                            <div class="card-header"><h3 class="card-title">Transaction hold plan</h3><span class="badge badge-warning">LOCAL SIMULATION</span></div>
+                            <div class="card-body">
+                                <p class="card-desc">Preview an internal hold checklist. This does not connect to or modify any payment system.</p>
+                                <button class="btn btn-danger" id="btn-hold-preview" type="button">Simulate local hold plan</button>
+                                <p class="workflow-feedback" id="hold-feedback" role="status" hidden></p>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <section id="view-profile" class="view-section">
+                    <div class="section-header">
+                        <div><h1 class="section-title">Your Profile</h1><p class="section-desc">Account details for your authenticated VoiceGuard session.</p></div>
+                        <div class="workspace-scene" data-scene="identity" role="img" aria-label="Decorative identity visualization; no biometric data is represented"><span class="scene-caption">VISUAL ONLY</span></div>
+                        <span class="badge badge-success">SESSION AUTHENTICATED</span>
+                    </div>
+                    <div class="profile-layout">
+                        <article class="card profile-summary-card">
+                            <div class="profile-orb" aria-hidden="true"><span id="profile-initials">VG</span></div>
+                            <h2 id="profile-card-name">Loading profile…</h2>
+                            <p id="profile-email-display">—</p>
+                            <span class="badge badge-info">LOCAL WORKSPACE ACCOUNT</span>
+                        </article>
+                        <article class="card">
+                            <div class="card-header"><div><h3 class="card-title">Account information</h3><p class="card-subtitle">Stored in the local VoiceGuard account database.</p></div></div>
+                            <form class="card-body settings-form" id="profile-form">
+                                <label for="profile-full-name">Full name</label>
+                                <input id="profile-full-name" name="fullName" type="text" minlength="2" maxlength="100" required>
+                                <label for="profile-email">Email address</label>
+                                <input id="profile-email" name="email" type="email" readonly>
+                                <button class="btn btn-primary" type="submit">Save profile</button>
+                                <p class="workflow-feedback" id="profile-feedback" role="status" hidden></p>
+                            </form>
+                        </article>
+                    </div>
+                </section>
+
+                <section id="view-settings" class="view-section">
+                    <div class="section-header">
+                        <div><h1 class="section-title">Account & Security Settings</h1><p class="section-desc">Manage your password and local display preferences.</p></div>
+                        <div class="workspace-scene" data-scene="controls" role="img" aria-label="Decorative security controls visualization"><span class="scene-caption">VISUAL ONLY</span></div>
+                        <span class="badge badge-info">ACCOUNT SECURITY</span>
+                    </div>
+                    <div class="grid-layout-2-col">
+                        <article class="card">
+                            <div class="card-header"><div><h3 class="card-title">Change password</h3><p class="card-subtitle">Your password is scrypt-hashed. Other sessions are signed out after an update.</p></div></div>
+                            <form class="card-body settings-form" id="password-form">
+                                <label for="current-password">Current password</label>
+                                <input id="current-password" name="currentPassword" type="password" autocomplete="current-password" maxlength="128" required>
+                                <label for="new-password">New password</label>
+                                <input id="new-password" name="newPassword" type="password" autocomplete="new-password" minlength="12" maxlength="128" required>
+                                <label for="confirm-new-password">Confirm new password</label>
+                                <input id="confirm-new-password" name="confirmNewPassword" type="password" autocomplete="new-password" minlength="12" maxlength="128" required>
+                                <button class="btn btn-primary" type="submit">Update password</button>
+                                <p class="workflow-feedback" id="password-feedback" role="status" hidden></p>
+                            </form>
+                        </article>
+                        <article class="card">
+                            <div class="card-header"><div><h3 class="card-title">Display preferences</h3><p class="card-subtitle">Preferences are saved in this browser only. They do not enable external notifications.</p></div></div>
+                            <div class="card-body settings-form">
+                                <label class="preference-row"><span><strong>Threat email notifications</strong><small>Email delivery is not configured.</small></span><input id="pref-email" type="checkbox" disabled aria-label="Threat email notifications unavailable"></label>
+                                <label class="preference-row"><span><strong>Sandbox action notices</strong><small>Show local interface-only status messages.</small></span><input id="pref-demo-notices" type="checkbox"></label>
+                                <label class="preference-row"><span><strong>Reduced motion</strong><small>Use the system motion preference for this account.</small></span><input id="pref-motion" type="checkbox"></label>
+                                <button class="btn btn-outline" id="btn-save-preferences" type="button">Save display preferences</button>
+                                <p class="workflow-feedback" id="preferences-feedback" role="status" hidden></p>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- 6. REPORTS & ANALYTICS                               -->
+                <!-- ==================================================== -->
+                <section id="view-analytics" class="view-section">
+                    <div class="section-header">
+                        <div>
+                            <h1 class="section-title">Detection Statistics & Risk Distribution</h1>
+                            <p class="section-desc">Illustrative charts and compliance rows for interface review. No event store or live analytics backend is connected.</p>
+                        </div>
+                        <div class="workspace-scene" data-scene="analytics" role="img" aria-label="Decorative three-dimensional analytics visualization; charts are illustrative"><span class="scene-caption">VISUAL ONLY</span></div>
+                        <button class="btn btn-primary btn-sm" id="btn-generate-report">
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+              </svg>
+              <span>Export Account Report (CSV)</span>
+            </button>
+                    </div>
+
+                    <!-- Top Analytics KPI Stats -->
+                    <div class="metrics-grid mb-4">
+                        <div class="metric-card">
+                            <span class="metric-title">MEAN TIME TO DETECT (MTTD)</span>
+                            <div class="metric-card-body">
+                                <div class="metric-number text-info">142 ms</div>
+                                <div class="metric-subtext"><span class="trend-up">-24ms</span> vs last month</div>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-title">FALSE POSITIVE RATE</span>
+                            <div class="metric-card-body">
+                                <div class="metric-number text-success">0.03%</div>
+                                <div class="metric-subtext"><span class="trend-neutral">Benchmark &le; 0.05%</span></div>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-title">ATTACK INTERCEPTION RATE</span>
+                            <div class="metric-card-body">
+                                <div class="metric-number text-success">99.82%</div>
+                                <div class="metric-subtext"><span class="trend-up">+0.14%</span> accuracy</div>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <span class="metric-title">TOTAL CLONES PREVENTED</span>
+                            <div class="metric-card-body">
+                                <div class="metric-number text-danger">2,419</div>
+                                <div class="metric-subtext"><span class="trend-danger">Estimated $14.2M saved</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Analytics Charts Grid -->
+                    <div class="grid-layout-2-col">
+                        <!-- Threat Vector Distribution Donut Chart -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div>
+                                    <h3 class="card-title">Threat Vector Distribution</h3>
+                                    <p class="card-subtitle">Breakdown of intercepted synthetic audio techniques</p>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-flex-wrap">
+                                    <div class="canvas-chart-container donut-container">
+                                        <canvas id="risk-donut-canvas" width="260" height="260"></canvas>
+                                    </div>
+                                    <div class="chart-donut-legend" id="donut-legend">
+                                        <!-- Injected via JS -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Detection Accuracy by Acoustic Frequency Band -->
+                        <div class="card">
+                            <div class="card-header">
+                                <div>
+                                    <h3 class="card-title">Weekly Inspection Volume by Protocol</h3>
+                                    <p class="card-subtitle">Inbound channels processed over the past 7 days</p>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="canvas-chart-container">
+                                    <canvas id="weekly-volume-canvas" width="500" height="240"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Compliance & Activity Audit Log -->
+                    <div class="card mt-4">
+                        <div class="card-header">
+                            <div>
+                                <h3 class="card-title">SOC Compliance & Security Activity Log</h3>
+                                <p class="card-subtitle">Automated cryptographic audit trail of defense events</p>
+                            </div>
+                            <span class="badge badge-info">ISO 27001 / SOC 2 Type II Compliant</span>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>AUDIT ID</th>
+                                        <th>EVENT TYPE</th>
+                                        <th>TRIGGERED BY</th>
+                                        <th>AFFECTED RESOURCE</th>
+                                        <th>STATUS CODE</th>
+                                        <th>HASH SIGNATURE</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="compliance-log-table">
+                                    <!-- Populated via JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+
+            <!-- Global App Footer -->
+            <footer class="app-footer">
+                <div class="footer-left">
+                    <span>VoiceGuard AI &bull; Voice Security Sandbox</span>
+                    <span class="footer-tag">SOC Telemetry Demo Platform</span>
+                </div>
+                <div class="footer-right">
+                    <span>Inference Engine: <strong class="text-warning">Not connected</strong></span>
+                    <span class="footer-dot">&bull;</span>
+                    <span>Sandbox demonstration</span>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- MODAL: Incident Forensics Inspection                      -->
+    <!-- ======================================================== -->
+    <div class="modal-backdrop" id="forensic-modal" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <div class="modal-title-group">
+                    <span class="badge badge-danger" id="modal-risk-badge">CRITICAL THREAT</span>
+                    <h3 class="modal-title" id="modal-incident-id">INCIDENT #VG-9082</h3>
+                </div>
+                <button class="modal-close-btn" id="modal-close-btn" aria-label="Close modal">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body-content">
+                <!-- Content injected dynamically via JS -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline btn-sm" id="modal-btn-download">Download Sample Report</button>
+                <button class="btn btn-primary btn-sm" id="modal-btn-dismiss">Close Forensics</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Main Application Script -->
+    <script src="app-auth.js?v=dashboard-audit-20261113"></script>
+    <script src="workspace.js?v=dashboard-audit-20261113"></script>
+    <script src="workspace-scenes.js"></script>
+    <script src="script.js?v=live-stream-20261113"></script>
+</body>
+
+</html>

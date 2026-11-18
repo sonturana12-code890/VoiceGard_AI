@@ -1,0 +1,230 @@
+[
+  {
+    "case": "Edge Case: Short Audio (1.5s < 4.03s specification)",
+    "model": "RAWNET2",
+    "passed": true,
+    "predicted_class": "REAL_HUMAN",
+    "label": "HUMAN",
+    "real_probability": 1.0,
+    "fake_probability": 0.0,
+    "confidence": 1.0,
+    "latency_ms": 231.3,
+    "expected": [
+      "REAL_HUMAN",
+      "INCONCLUSIVE"
+    ]
+  },
+  {
+    "case": "Edge Case: Short Audio (1.5s < 4.03s specification)",
+    "model": "AASIST",
+    "passed": true,
+    "predicted_class": "REAL_HUMAN",
+    "label": "HUMAN",
+    "real_probability": 1.0,
+    "fake_probability": 0.0,
+    "confidence": 1.0,
+    "latency_ms": 654.7,
+    "expected": [
+      "REAL_HUMAN",
+      "INCONCLUSIVE"
+    ]
+  },
+  {
+    "case": "Edge Case: Long Audio (107s, 35 multi-segments)",
+    "model": "RAWNET2",
+    "passed": true,
+    "predicted_class": "REAL_HUMAN",
+    "label": "HUMAN",
+    "real_probability": 0.7624,
+    "fake_probability": 0.2376,
+    "confidence": 0.7624,
+    "latency_ms": 784.7,
+    "expected": [
+      "REAL_HUMAN"
+    ]
+  },
+  {
+    "case": "Edge Case: Long Audio (107s, 35 multi-segments)",
+    "model": "AASIST",
+    "passed": true,
+    "predicted_class": "REAL_HUMAN",
+    "label": "HUMAN",
+    "real_probability": 0.9742,
+    "fake_probability": 0.0258,
+    "confidence": 0.9742,
+    "latency_ms": 7750.9,
+    "expected": [
+      "REAL_HUMAN"
+    ]
+  },
+  {
+    "case": "Edge Case: Noisy Audio (Human vocal + 0.15 Gaussian noise)",
+    "model": "RAWNET2",
+    "passed": true,
+    "predicted_class": "REAL_HUMAN",
+    "label": "HUMAN",
+    "real_probability": 1.0,
+    "fake_probability": 0.0,
+    "confidence": 1.0,
+    "latency_ms": 107.9,
+    "expected": [
+      "REAL_HUMAN",
+      "INCONCLUSIVE"
+    ]
+  },
+  {
+    "case": "Edge Case: Noisy Audio (Human vocal + 0.15 Gaussian noise)",
+    "model": "AASIST",
+    "passed": true,
+    "predicted_class": "REAL_HUMAN",
+    "label": "HUMAN",
+    "real_probability": 1.0,
+    "fake_probability": 0.0,
+    "confidence": 1.0,
+    "latency_ms": 423.1,
+    "expected": [
+      "REAL_HUMAN",
+      "INCONCLUSIVE"
+    ]
+  },
+  {
+    "case": "Edge Case: Silent Audio (Zero energy PCM stream)",
+    "model": "RAWNET2",
+    "passed": true,
+    "predicted_class": "INCONCLUSIVE",
+    "label": "INCONCLUSIVE",
+    "real_probability": 0.5,
+    "fake_probability": 0.5,
+    "confidence": 0.5,
+    "latency_ms": 35.5,
+    "expected": [
+      "INCONCLUSIVE"
+    ]
+  },
+  {
+    "case": "Edge Case: Silent Audio (Zero energy PCM stream)",
+    "model": "AASIST",
+    "passed": true,
+    "predicted_class": "INCONCLUSIVE",
+    "label": "INCONCLUSIVE",
+    "real_probability": 0.5,
+    "fake_probability": 0.5,
+    "confidence": 0.5,
+    "latency_ms": 259.0,
+    "expected": [
+      "INCONCLUSIVE"
+    ]
+  },
+  {
+    "case": "Labeled Human Voice: Speaker 1 (sontu1.mp3)",
+    "model": "RAWNET2",
+    "passed": true,
+    "predicted_class": "REAL_HUMAN",
+    "label": "HUMAN",
+    "real_probability": 0.7605,
+    "fake_probability": 0.2395,
+    "confidence": 0.7605,
+    "latency_ms": 970.7,
+    "expected": [
+      "REAL_HUMAN"
+    ]
+  },
+  {
+    "case": "Labeled Human Voice: Speaker 1 (sontu1.mp3)",
+    "model": "AASIST",
+    "passed": true,
+    "predicted_class": "REAL_HUMAN",
+    "label": "HUMAN",
+    "real_probability": 0.9742,
+    "fake_probability": 0.0258,
+    "confidence": 0.9742,
+    "latency_ms": 7310.0,
+    "expected": [
+      "REAL_HUMAN"
+    ]
+  },
+  {
+    "case": "Labeled Human Voice: Speaker 2 (Ayush CR.mpeg)",
+    "model": "RAWNET2",
+    "passed": true,
+    "predicted_class": "REAL_HUMAN",
+    "label": "HUMAN",
+    "real_probability": 0.6615,
+    "fake_probability": 0.3385,
+    "confidence": 0.6615,
+    "latency_ms": 822.3,
+    "expected": [
+      "REAL_HUMAN"
+    ]
+  },
+  {
+    "case": "Labeled Human Voice: Speaker 2 (Ayush CR.mpeg)",
+    "model": "AASIST",
+    "passed": true,
+    "predicted_class": "REAL_HUMAN",
+    "label": "HUMAN",
+    "real_probability": 0.9219,
+    "fake_probability": 0.0781,
+    "confidence": 0.9219,
+    "latency_ms": 6403.7,
+    "expected": [
+      "REAL_HUMAN"
+    ]
+  },
+  {
+    "case": "Labeled Synthetic Speech: Neural Vocoder Clone",
+    "model": "RAWNET2",
+    "passed": true,
+    "predicted_class": "AI_GENERATED",
+    "label": "AI_GENERATED",
+    "real_probability": 0.0043,
+    "fake_probability": 0.9957,
+    "confidence": 0.9957,
+    "latency_ms": 32.7,
+    "expected": [
+      "AI_GENERATED"
+    ]
+  },
+  {
+    "case": "Labeled Synthetic Speech: Neural Vocoder Clone",
+    "model": "AASIST",
+    "passed": false,
+    "predicted_class": "REAL_HUMAN",
+    "label": "HUMAN",
+    "real_probability": 1.0,
+    "fake_probability": 0.0,
+    "confidence": 1.0,
+    "latency_ms": 214.3,
+    "expected": [
+      "AI_GENERATED"
+    ]
+  },
+  {
+    "case": "Labeled Synthetic Speech: AI Generated MP3 (AI GENERATED.mp3)",
+    "model": "RAWNET2",
+    "passed": true,
+    "predicted_class": "AI_GENERATED",
+    "label": "AI_GENERATED",
+    "real_probability": 0.191,
+    "fake_probability": 0.809,
+    "confidence": 0.809,
+    "latency_ms": 142.0,
+    "expected": [
+      "AI_GENERATED"
+    ]
+  },
+  {
+    "case": "Labeled Synthetic Speech: AI Generated MP3 (AI GENERATED.mp3)",
+    "model": "AASIST",
+    "passed": false,
+    "predicted_class": "INCONCLUSIVE",
+    "label": "INCONCLUSIVE",
+    "real_probability": 0.5151,
+    "fake_probability": 0.4849,
+    "confidence": 0.5151,
+    "latency_ms": 1238.4,
+    "expected": [
+      "AI_GENERATED"
+    ]
+  }
+]
