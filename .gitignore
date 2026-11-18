@@ -30,6 +30,7 @@ backend/uploads/
 *.log
 
 # Backups & local files
+models/
 _backup_voiceguard/
 *.bak
 
